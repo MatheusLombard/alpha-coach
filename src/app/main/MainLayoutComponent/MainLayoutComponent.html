@@ -1,0 +1,28 @@
+<div class="app-container">
+  <aside class="app-sidebar">
+    <div class="menu-brand">
+      <app-brand></app-brand>
+    </div>
+    <nav class="menu">
+      <app-buttons [value]="'DASHBOARD'" [class]="'menu-button'" [icon]="'columns-gap'" [to]="'dashboard'"/>
+      <app-buttons [value]="'ALUNO'" [class]="'menu-button'" [icon]="'people'" [to]="'alunos'"/>
+      <app-buttons [value]="'TREINOS'" [class]="'menu-button'" [icon]="'clipboard-pulse'" [to]="'treinos'"/>
+      <app-buttons [value]="'FINACEIRO'" [class]="'menu-button'" [icon]="'currency-dollar'" [to]="'financeiro'"/>
+      <app-buttons [value]="'EXERCÍCIO'" [class]="'menu-button'" [icon]="'book'" [to]="'exercicio'"/>
+      <app-buttons [value]="'PERFIL'" [class]="'menu-button'" [icon]="'person'" [to]="'perfil'"/>
+    </nav>
+    <div class="menu-logout">
+      <app-buttons [value]="'SAIR'" [class]="'menu-button'" [icon]="'box-arrow-right'" [to]="''"/>
+    </div>
+  </aside>
+
+  <div class="app-content">
+    <header class="app-header">
+      <h1 class="font-subtitle">Olá Thiago,</h1>
+      <p class="font-body">Aqui esta um resumo das suas atividades hoje.</p>
+    </header>
+    <main class="app-main">
+      <router-outlet />
+    </main>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+  .input-text{
+    color: #fff;
+    background-color: color-mix(in srgb, var(--cor-accent) 1%, var(--cor-accent) 1%);
+    border-color: color-mix(in srgb, var(--cor-accent) 25%, var(--cor-accent) 25%);
+    border-style: solid;
+    border-radius: 15px;
+    width: 100%;
+    padding: 16px;
+    margin: 8px 0 16px 0;
+  }
+  .input-text:focus{
+    background-color: color-mix(in srgb, var(--cor-accent) 1%, var(--cor-accent) 1%);
+    border-color: color-mix(in srgb, var(--cor-accent) 25%, var(--cor-accent) 25%);
+  }

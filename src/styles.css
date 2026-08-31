@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --cor-primaria: #1A3A6E;
+  --cor-accent: #2D6BE4;
+  --cor-success: #22C55E;
+  --cor-warning: #F59E0B;
+  --cor-danger: #EF4444;
+  --bg-dark: #00050A;
+  --bg-light: #F8FAFC;
+  --font-screen-title: 36px;
+  --font-subtitle: 18px;
+  --font-body: 14px;
+  --font-label: 12px;
+}
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'inter';
+}
+html
+body{
+  background-color: #05070d;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(14, 31, 70, 0.2) 0%, transparent 45%),
+    radial-gradient(circle at 85% 55%, rgba(26, 68, 158, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(0, 0, 0, 0.12) 0%, transparent 60%);
+  min-height: 100vh;
+  max-height: 100vh;
+  height: 100vh;
+}
+
+.font-screen-title{
+  font-size: var(--font-screen-title);
+  font-weight: bolder;
+}
+.font-subtitle{
+  font-size: var(--font-subtitle);
+  font-weight: bold;
+}
+.font-body{
+  font-size: var(--font-body);
+}
+.font-label{
+  font-size: var(--font-label);
+}

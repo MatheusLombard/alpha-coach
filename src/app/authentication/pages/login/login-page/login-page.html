@@ -1,0 +1,126 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+  :host {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .main-container {
+    position: relative;
+    top: -3rem;
+    color: #fff;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+  .welcome {
+    flex: 1;
+    display: flex;
+    gap: 32px;
+    flex-direction: column;
+    margin-left: 16px;
+    flex-wrap: wrap;
+    padding: 32px;
+  }
+  .welcome h1 {
+    font-size: var(--font-screen-title);
+    letter-spacing: 2px;
+  }
+
+  .group-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .line {
+    height: 100%;
+    width: 0px;
+    border: 0.5px solid var(--cor-accent);
+    opacity: 0.2;
+  }
+
+  /* LOGIN AREA */
+
+  .login-area {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+  }
+  .div-login {
+    height: 100%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  a {
+    text-decoration: none;
+    color: #fff;
+    margin-top: -32px;
+  }
+  .forget-password {
+    opacity: 0.7;
+    justify-self: flex-end;
+  }
+</style>
+
+<!-- LOGO PODE VIRAR UM COMPONEMTE -->
+<div style="margin: 16px;">
+  <app-brand/>
+</div>
+
+<div class="main-container">
+  <div class="welcome">
+    <h2 style="font-size: var(--font-body); color: var(--cor-accent)">PLATAFORMA DE GESTÃO</h2>
+    <h1>
+      Gerencie seus alunos<br />
+      com <span style="color: var(--cor-accent)">precisão</span> e<br />
+      <span style="color: var(--cor-accent)">profissionalismo</span>
+    </h1>
+    <p>
+      Controle treinos, financeiro, evolução dos alunos e muito mais em uma única plataforma pensada
+      para personal trainers
+    </p>
+    <div class="group-buttons">
+      <!-- BOTÃO SERÁ UM COMPONENT -->
+      <app-buttons [icon]="'activity'" [value]="'Montagem de Treinos'" />
+
+      <app-buttons [icon]="'currency-dollar'" [value]="'Gestão Financeira'" />
+
+      <app-buttons [icon]="'people'" [value]="'Perfil de Alunos'" />
+
+      <app-buttons [icon]="'shield-check'" [value]="'Dados Seguros'" />
+    </div>
+  </div>
+
+  <div class="line"></div>
+
+  <div class="login-area">
+    <div class="div-login">
+      <div>
+        <h1 class="font-screen-title">Bem-vindo de volta</h1>
+        <h2 class="font-subtitle" style="opacity: 0.3">Acesse sua conta para continuar</h2>
+      </div>
+
+      <form action="" method="post" class="group-inputs">
+        <!-- InputText -->
+        <div>
+          <app-input-text id="email" [type]="'email'" />
+          <app-input-text id="senha" [type]="'password'" />
+        </div>
+      </form>
+      <a href=""><p class="font-label forget-password">Esqueci minha senha</p></a>
+      <app-buttons [value]="'Entrar'" [class]="'send-button' " [to]="'/home/dashboard'"/>
+    </div>
+  </div>
+</div>

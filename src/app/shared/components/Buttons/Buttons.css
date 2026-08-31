@@ -1,0 +1,65 @@
+  button {
+    background-color: transparent;
+    border: 1px solid var(--cor-accent);
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-size: var(--font-label);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* opacity: 75%; */
+    width: 100%;
+  }
+  button i {
+    color: var(--cor-accent);
+  }
+  button:hover {
+    background-color: var(--cor-accent);
+    scale: 1.05;
+    opacity: 1;
+  }
+  button:hover i {
+    color: #fff;
+  }
+/* BOTÃO PARA ENVIAR FORMULARIO */
+
+.send-button {
+    padding: 16px;
+    text-align: center;
+    background-color: var(--cor-accent);
+    justify-content: center;
+    opacity: 1;
+    cursor: pointer;
+  }
+
+
+  /* BOTÕES DE NAVEGAÇÃO NA MAIN */
+
+.menu-button{
+  flex-direction: column;
+  border: none
+}
+.menu-button i{
+  font-size: var(--font-body);
+  color: #fff;
+  opacity: .5;
+}
+.menu-button p{
+  font-size: var(--font-label);
+  opacity: 0.5
+}
+
+.menu-button:hover i, .menu-button:hover p{
+  opacity: 1;
+}
+
+.menu-button.active{
+  background-color: color-mix(in srgb, var(--cor-accent) 25%, transparent);
+  border: .5px solid color-mix(in srgb, var(--cor-accent) 70%, transparent);
+  border-left: 7px solid var(--cor-accent);
+}
+.menu-button.active p, .menu-button.active i{
+  opacity: 1;
+  color: var(--cor-accent);
+}
