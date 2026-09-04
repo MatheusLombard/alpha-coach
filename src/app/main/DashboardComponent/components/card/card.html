@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-header">
+    <i class="bi bi-people"></i>
+    <!-- ICONE DE REPRESENTAÇÃO -->
+    <div class="card-header-values">
+      <i [class]="'bi bi-' + [icon()]"></i>
+      <p>+3</p>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-body-values">
+      <h1>{{cardValue()}}</h1>
+      <p class="font-label">{{cardLabel()}}</p>
+    </div>
+  </div>
+</div>

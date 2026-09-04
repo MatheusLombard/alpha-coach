@@ -1,0 +1,29 @@
+
+.card {
+  background: rgba(10, 20, 40, 0.8);
+  border: 1px solid var(--cor-accent);
+  border-radius: 20px;
+  width: 100%;
+  padding: 24px 16px;
+
+
+}
+.card-header {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+.card-header-values {
+  display: flex;
+  color: var(--cor-success);
+  gap: 4px;
+}
+.card-body {
+  padding-top: 8px;
+}
+.card-body .card-body-values h1 {
+  color: #fff;
+}
+.card-body .card-body-values p {
+  color: #aaa;
+}

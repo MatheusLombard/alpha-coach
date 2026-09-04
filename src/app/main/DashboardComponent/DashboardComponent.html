@@ -1,1 +1,6 @@
-<p>DashboardComponent works!</p>,
+<div class="container">
+
+  @for (item of dashboardCards; track $index) {
+    <app-card [cardLabel]="item.label" [cardValue]="item.value"/>
+  }
+</div>
