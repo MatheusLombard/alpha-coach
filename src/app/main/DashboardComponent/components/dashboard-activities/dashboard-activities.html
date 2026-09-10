@@ -1,0 +1,55 @@
+<style>
+  .circle {
+    height: 10px;
+    width: 10px;
+    background-color: var(--cor-success);
+    border-radius: 50%;
+  }
+  .circle.info {
+    background-color: var(--cor-accent);
+  }
+  .circle.warning {
+    background-color: var(--cor-warning);
+  }
+  .circle.danger {
+    background-color: var(--cor-danger);
+  }
+
+  .list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ffffff3a;
+    padding: 16px;
+    gap: 16px
+  }
+
+  .list-item-image{
+    width: 60px;
+    border-radius: 16px;
+  }
+  .list-item-desc{
+    flex: 1;
+  }
+  .list-item-status{
+    display: flex;
+    align-items: center;
+    gap: 16px
+  }
+</style>
+
+@for (item of listRecentActivities; track $index) {
+  <ul style="list-style-type: none">
+    <li class="list-item">
+      <div><img [src]="item.avatarUrl" alt="" class="list-item-image"/></div>
+      <div class="list-item-desc">
+        <p>{{ item.name }}</p>
+        <p>{{ item.description }}</p>
+      </div>
+      <div class="list-item-status">
+        <p>{{ item.time }}</p>
+        <div [class]="'circle ' + item.status"></div>
+      </div>
+    </li>
+  </ul>
+}

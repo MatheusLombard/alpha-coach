@@ -12,9 +12,23 @@ export class Card {
   type = input<string>()
   icon = signal<string>('')
 
-  classChoosed = computed(() => {
+  iconChoosed = computed(() => {
+    console.log('passei aqui')
     if(this.type() === 'up'){
-      this.icon.set('graph-up-arrow')
+
+      return 'graph-up-arrow'
+    }else{
+      return 'graph-down-arrow'
     }
   })
+
+  danger = computed(() => {
+    if(this.type() == 'down'){
+      return 'danger'
+    }else {
+      return ''
+    }
+  })
+
+
 }

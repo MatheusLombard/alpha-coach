@@ -1,0 +1,8 @@
+.panel-container {
+  background: rgba(10, 20, 40, 0.8);
+  border: 1px solid var(--cor-accent);
+  border-radius: 20px;
+  width: 100%;
+  padding: 24px 16px;
+  color: #fff
+}

@@ -1,6 +1,14 @@
 <div class="container">
-
   @for (item of dashboardCards; track $index) {
-    <app-card [cardLabel]="item.label" [cardValue]="item.value"/>
+    <app-card
+      class="card-span-2"
+      [cardLabel]="item.label"
+      [cardValue]="item.value"
+      [type]="item.type"
+    />
   }
+
+  <app-panel title="Atividades Recentes" class="card-span-5">
+    <app-dashboard-activities/>
+  </app-panel>
 </div>

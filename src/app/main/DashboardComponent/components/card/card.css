@@ -18,6 +18,9 @@
   color: var(--cor-success);
   gap: 4px;
 }
+.card-header-values.danger{
+  color: var(--cor-danger)
+}
 .card-body {
   padding-top: 8px;
 }
