@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Card } from "./components/card/card";
-import { FormField } from "@angular/forms/signals";
 import { Panel } from "./components/panel/panel";
 import { DashboardActivities } from "./components/dashboard-activities/dashboard-activities";
+import { DashboardDistribution } from "./components/dashboard-distribution/dashboard-distribution";
 
 @Component({
   selector: 'app-dashboard-component',
-  imports: [Card, FormField, Panel, DashboardActivities],
+  imports: [Card, Panel, DashboardActivities, DashboardDistribution],
   templateUrl: './DashboardComponent.html',
   styleUrl: './DashboardComponent.css',
 })
