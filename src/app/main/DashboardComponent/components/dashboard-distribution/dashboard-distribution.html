@@ -7,34 +7,27 @@
   .list-distribution p{
     align-self: flex-start;
   }
-  .progress{
-    width: 100%;
-    height: 10px;
-    border-radius: 20px;
-    border: 1px solid black;
-  }
-  .progress-fill{
-    border-radius: 20px;
-    border: none;
-    height: 100%;
-  }
-  .progress-fill.success{
-    background-color: var(--cor-success);
-  }
-  .progress-fill.warning{
-    background-color: var(--cor-warning );
-  }
-  .progress-fill.info{
-    background-color: var(--cor-accent);
-  }
+.progress-bar {
+  height: 6px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+.progress-bar-fill.info { background: var(--cor-accent); }
+.progress-bar-fill.success { background: var(--cor-success); }
+.progress-bar-fill.warning { background: var(--cor-warning); }
 </style>
 
 @for (item of plans; track $index) {
   <ul style="list-style-type: none; margin-top: 8px;">
     <li class="list-distribution">
       <p class="font-body" >{{item.label}}</p>
-      <div class="progress">
-         <div [class]="'progress-fill ' + item.color" [style.width.%]="percentage(item.value)"></div>
+      <div class="progress-bar">
+         <div [class]="'progress-bar-fill ' + item.color" [style.width.%]="percentage(item.value)"></div>
       </div>
     </li>
   </ul>

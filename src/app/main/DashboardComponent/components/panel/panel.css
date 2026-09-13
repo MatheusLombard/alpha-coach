@@ -1,8 +1,15 @@
+/* panel.css */
 .panel-container {
-  background: rgba(10, 20, 40, 0.8);
-  border: 1px solid var(--cor-accent);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
   border-radius: 20px;
   width: 100%;
   padding: 24px 16px;
-  color: #fff
+  color: #fff;
+}
+
+.panel-container h3 {
+  font-size: var(--font-subtitle);
+  font-weight: 600;
+  margin-bottom: 16px;
 }

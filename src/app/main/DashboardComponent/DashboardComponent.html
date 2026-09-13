@@ -5,6 +5,7 @@
       [cardLabel]="item.label"
       [cardValue]="item.value"
       [type]="item.type"
+      [icon]="item.type == 'up' ? 'graph-up-arrow' : 'graph-down-arrow' "
     />
   }
 
@@ -12,7 +13,12 @@
     <app-dashboard-activities/>
   </app-panel>
 
-  <app-panel title="Distribuição de Planos" class="card-span-3">
-    <app-dashboard-distribution/>
-  </app-panel>
+  <div style="display: flex; flex-direction: column; gap: 16px;" class="card-span-3">
+    <app-panel title="Distribuição de Planos">
+      <app-dashboard-distribution/>
+    </app-panel>
+    <app-panel title="Próximos Vencimentos">
+      <app-dashboard-payments-warning/>
+    </app-panel>
+  </div>
 </div>

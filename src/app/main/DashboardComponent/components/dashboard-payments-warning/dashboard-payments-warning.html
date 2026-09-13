@@ -1,0 +1,31 @@
+<style>
+  .list-payments-warning {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #ffffff3a;
+    padding: 8px 0;
+  }
+
+  .time-to-payment{
+    font-weight: 800;
+  }
+  .time-to-payment.info {
+    color: var(--cor-accent);
+  }
+  .time-to-payment.danger {
+    color: var(--cor-danger);
+  }
+  .time-to-payment.warning {
+    color: var(--cor-warning);
+  }
+</style>
+
+@for (item of dataCostumers(); track $index) {
+  <ul style="list-style-type: none; margin-top: 8px">
+    <li class="list-payments-warning">
+      <p class="font-body">{{ item.custumer }}</p>
+      <p class="font-body time-to-payment" [class]="item.classColor">{{ item.dataFormat }}</p>
+    </li>
+  </ul>
+}

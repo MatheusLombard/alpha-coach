@@ -3,16 +3,23 @@ import { Card } from "./components/card/card";
 import { Panel } from "./components/panel/panel";
 import { DashboardActivities } from "./components/dashboard-activities/dashboard-activities";
 import { DashboardDistribution } from "./components/dashboard-distribution/dashboard-distribution";
+import { DashboardPaymentsWarning } from './components/dashboard-payments-warning/dashboard-payments-warning';
+
+interface DashboardCards {
+  label: string,
+  value: string,
+  type: 'up' | 'down',
+}
 
 @Component({
   selector: 'app-dashboard-component',
-  imports: [Card, Panel, DashboardActivities, DashboardDistribution],
+  imports: [Card, Panel, DashboardActivities, DashboardDistribution, DashboardPaymentsWarning],
   templateUrl: './DashboardComponent.html',
   styleUrl: './DashboardComponent.css',
 })
 export class DashboardComponent {
 
-  dashboardCards = [
+  dashboardCards: DashboardCards[] = [
     {
       label: 'Alunos Ativos',
       value: '34',

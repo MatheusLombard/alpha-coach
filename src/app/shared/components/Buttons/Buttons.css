@@ -36,30 +36,45 @@
 
   /* BOTÕES DE NAVEGAÇÃO NA MAIN */
 
-.menu-button{
+.menu-button {
   flex-direction: column;
-  border: none
+  border: none;
+  border-radius: 12px;
+  padding: 10px 4px;
+  gap: 4px;
+  transition: background-color 0.2s ease;
 }
-.menu-button i{
-  font-size: var(--font-body);
+
+.menu-button i {
+  font-size: 18px;
   color: #fff;
-  opacity: .5;
-}
-.menu-button p{
-  font-size: var(--font-label);
-  opacity: 0.5
+  opacity: 0.5;
 }
 
-.menu-button:hover i, .menu-button:hover p{
-  opacity: 1;
+.menu-button p {
+  font-size: 10px;
+  letter-spacing: 0.3px;
+  opacity: 0.5;
 }
 
-.menu-button.active{
-  background-color: color-mix(in srgb, var(--cor-accent) 25%, transparent);
-  border: .5px solid color-mix(in srgb, var(--cor-accent) 70%, transparent);
-  border-left: 7px solid var(--cor-accent);
+.menu-button:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  scale: 1; /* remova o "scale: 1.05" do estado normal do button, ele deixa o menu tremido */
 }
-.menu-button.active p, .menu-button.active i{
+
+.menu-button:hover i,
+.menu-button:hover p {
+  opacity: 0.8;
+}
+
+.menu-button.active {
+  background-color: color-mix(in srgb, var(--cor-accent) 18%, transparent);
+  border-left: 3px solid var(--cor-accent);
+  border-radius: 8px;
+}
+
+.menu-button.active i,
+.menu-button.active p {
   opacity: 1;
   color: var(--cor-accent);
 }

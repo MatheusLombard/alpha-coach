@@ -1,9 +1,9 @@
 <div class="card">
   <div class="card-header">
-    <i class="bi bi-people"></i>
+    <div class="icon-circle" [class]="'icon-' + type()">
     <!-- ICONE DE REPRESENTAÇÃO -->
-    <div [class]="'card-header-values ' + danger()">
-      <i [class]="'bi bi-' + iconChoosed()"></i>
+    <div [class]="'card-header-values '  + trendColorClass()">
+      <i [class]="'bi bi-' + icon()"></i>
       <p>3</p>
     </div>
   </div>
