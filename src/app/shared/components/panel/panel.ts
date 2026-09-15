@@ -9,5 +9,5 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 })
 export class Panel {
 
-  title = input.required<string>()
+  title = input<string>()
 }

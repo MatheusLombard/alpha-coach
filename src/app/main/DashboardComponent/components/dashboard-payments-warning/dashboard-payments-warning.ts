@@ -14,7 +14,7 @@ export class DashboardPaymentsWarning {
   custumersWarning = signal<Custumers[]>([
     {
       custumer: 'Rodrigo Costa',
-      time: '2026-09-12',
+      time: '2026-09-15',
     },
     {
       custumer: 'Ana Paula',
@@ -52,15 +52,24 @@ export class DashboardPaymentsWarning {
     if (diffDays === 0) return 'Hoje';
     if (diffDays === 1) return 'Amanhã';
     if (diffDays > 1) return `Em ${diffDays} dias`;
+    if (diffDays <= -1) return `Vencido`;
 
     return 'Não encontrado dias para formatar';
   };
 
   private classFormat = (diffDays: number): string => {
-    if (diffDays === 0) return 'danger';
+    if (diffDays <= 0) return 'danger';
     if (diffDays === 1) return 'warning';
     if (diffDays > 1) return `info`;
 
     return 'Não encontrado dias para classe de cor';
   };
 }
+// possiveis caminhos para a pessoa comprar meu software
+// qual percurso o cliente precisa percorrer
+// o que no meu sistema gerar
+
+// aquisição é dinheiro
+// ativação, retenção, receita e referencia é software bom
+
+// FUNIL AARRR

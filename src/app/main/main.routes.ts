@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router'
 import { MainLayoutComponent } from "./MainLayoutComponent/MainLayoutComponent";
 import { DashboardComponent } from './DashboardComponent/DashboardComponent';
+import { StudentComponent } from './StudentComponent/StudentComponent';
 
 export const mainRoutes : Routes = [
   {
@@ -13,7 +14,7 @@ export const mainRoutes : Routes = [
       },
       {
         path: 'alunos',
-        component: DashboardComponent,
+        component: StudentComponent,
       },
       {
         path: 'treinos',

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Card } from "./components/card/card";
-import { Panel } from "./components/panel/panel";
+import { Panel } from "../../shared/components/panel/panel";
 import { DashboardActivities } from "./components/dashboard-activities/dashboard-activities";
 import { DashboardDistribution } from "./components/dashboard-distribution/dashboard-distribution";
 import { DashboardPaymentsWarning } from './components/dashboard-payments-warning/dashboard-payments-warning';

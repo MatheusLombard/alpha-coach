@@ -51,3 +51,11 @@ body{
 .font-label{
   font-size: var(--font-label);
 }
+
+.card-span-2 { grid-column: span 2; }
+.card-span-3 { grid-column: span 3; }
+.card-span-5 { grid-column: span 5; }
+
+.span{
+  grid-column: var(--span, 1);
+}

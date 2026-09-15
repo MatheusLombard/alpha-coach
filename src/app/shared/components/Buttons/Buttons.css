@@ -1,40 +1,42 @@
-  button {
-    background-color: transparent;
-    border: 1px solid var(--cor-accent);
-    border-radius: 15px;
-    padding: 8px 16px;
-    font-size: var(--font-label);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    /* opacity: 75%; */
-    width: 100%;
-  }
-  button i {
-    color: var(--cor-accent);
-  }
-  button:hover {
-    background-color: var(--cor-accent);
-    scale: 1.05;
-    opacity: 1;
-  }
-  button:hover i {
-    color: #fff;
-  }
+button {
+  background-color: transparent;
+  border: 1px solid var(--cor-accent);
+  border-radius: 15px;
+  padding: 8px 16px;
+  font-size: var(--font-label);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* opacity: 75%; */
+  width: 100%;
+}
+button i {
+  color: var(--cor-accent);
+}
+button:hover {
+  background-color: var(--cor-accent);
+  scale: 1.05;
+  opacity: 1;
+}
+button:hover i {
+  color: #fff;
+}
 /* BOTÃO PARA ENVIAR FORMULARIO */
 
 .send-button {
-    padding: 16px;
-    text-align: center;
-    background-color: var(--cor-accent);
-    justify-content: center;
-    opacity: 1;
-    cursor: pointer;
-  }
+  padding: 16px;
+  text-align: center;
+  background-color: var(--cor-accent);
+  justify-content: center;
+  opacity: 1;
+  cursor: pointer;
+}
+.send-button i{
+  color: #fff;
+}
 
-
-  /* BOTÕES DE NAVEGAÇÃO NA MAIN */
+/* BOTÕES DE NAVEGAÇÃO NA MAIN */
 
 .menu-button {
   flex-direction: column;
