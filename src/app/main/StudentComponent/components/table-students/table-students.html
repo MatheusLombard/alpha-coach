@@ -1,15 +1,63 @@
 <style>
-  table{
-    width: 100%;
-    border: 1px solid;
+  table {
+    width: calc(100% + 32px);
+    border-collapse: collapse;
+    margin: -24px -16px;
+  }
+  thead {
+    color: var(--cor-primaria);
+  }
+  thead th,
+  tbody tr {
+    text-align: start;
+    padding: 16px;
+  }
+  td {
+    border: 1px solid var(--border-subtle);
   }
 
-  table tbody tr{
+  /* table tbody tr{
     text-align: center;
     padding: 16px;
-  }
-  table tbody tr td{
+  }*/
+  table tbody tr td {
     padding: 16px;
+  }
+  .avatar {
+    width: 8%;
+    border-radius: 12px;
+  }
+  .div-students {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .div-students p {
+    color: var(--cor-primaria);
+  }
+  .div-type {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    width: auto;
+    padding: 8px 16px;
+    border-radius: 25px;
+    display: inline-block;
+  }
+  .div-type.danger {
+    background-color: color-mix(in srgb, var(--cor-danger) 20%, transparent);
+  }
+
+  .div-type p {
+    text-align: center;
+    color: var(--cor-primaria);
+    font-weight: 600;
+  }
+  .div-type.danger p, .div-type.danger i {
+    color: var(--cor-danger);
+  }
+  .defaut-format {
+    color: var(--cor-primaria);
+    font-weight: 600;
   }
 </style>
 
@@ -23,15 +71,40 @@
     <!-- <th></th> -->
   </thead>
   <tbody>
-    <tr>
-      <td>Jorge</td>
-      <td>Presencial</td>
-      <td>Mensal</td>
-      <td>Jan 2024</td>
-      <td>Em dia</td>
-      <td>Menu</td>
-    </tr>
-
+    @for (item of listStudents; track $index) {
+      <tr>
+        <td>
+          <div class="div-students">
+            <img [src]="item.avatar" class="avatar" alt="avatar" />
+            <div class="dsc-students">
+              <h3>{{ item.nome }}</h3>
+              <p class="font-label">{{ item.email }}</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="div-type">
+            <p>{{ item.tipo }}</p>
+          </div>
+        </td>
+        <td class="defaut-format">
+          <p>
+            {{ item.plano }}
+          </p>
+        </td>
+        <td class="defaut-format">{{item.tipo}}</td>
+        <td>
+          <div class="div-type danger">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+              <i class="bi bi-dot"></i>
+              <p>{{item.status}}</p>
+            </div>
+          </div>
+        </td>
+        <td class="defaut-format">
+          <i class="bi bi-three-dots-vertical"></i>
+        </td>
+      </tr>
+    }
   </tbody>
-
 </table>

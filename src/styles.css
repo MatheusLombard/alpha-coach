@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-  --cor-primaria: #1A3A6E;
+  --cor-primaria: rgb(61, 97, 127);
   --cor-accent: #2D6BE4;
   --cor-success: #22C55E;
   --cor-warning: #F59E0B;

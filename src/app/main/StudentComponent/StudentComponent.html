@@ -4,12 +4,15 @@
     grid-template-columns: repeat(8, 2fr);
     gap: 16px;
   }
+  .panel{
+    padding: 0;
+  }
 </style>
 
 <div class="container-students">
   <app-input-search [style.grid-column]="'span 7'"/>
   <app-buttons icon="plus-circle" value="Novo Aluno" class="send-button"/>
-  <app-panel [style.grid-column] = "'span 8'">
+  <app-panel [style.grid-column] = "'span 8'" class="panel">
     <app-table-students/>
   </app-panel>
 </div>
