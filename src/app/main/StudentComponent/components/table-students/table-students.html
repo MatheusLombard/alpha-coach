@@ -50,7 +50,7 @@
   .div-type p {
     text-align: center;
     color: var(--cor-primaria);
-    font-weight: 600;
+    font-weight: 500;
   }
   .div-type.danger p, .div-type.danger i {
     color: var(--cor-danger);
@@ -92,12 +92,12 @@
             {{ item.plano }}
           </p>
         </td>
-        <td class="defaut-format">{{item.tipo}}</td>
+        <td class="defaut-format">{{item.desde}}</td>
         <td>
           <div class="div-type danger">
             <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-              <i class="bi bi-dot"></i>
-              <p>{{item.status}}</p>
+              <i class="bi bi-dot" style="margin-left: -6px;"></i>
+              <p>{{item.status.toLocaleUpperCase().replace('-', ' ')}}</p>
             </div>
           </div>
         </td>

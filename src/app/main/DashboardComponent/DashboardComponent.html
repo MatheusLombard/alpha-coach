@@ -1,24 +1,25 @@
 <div class="container">
   @for (item of dashboardCards; track $index) {
-    <app-card
-      class="card-span-2"
-      [cardLabel]="item.label"
-      [cardValue]="item.value"
-      [type]="item.type"
-      [icon]="item.type == 'up' ? 'graph-up-arrow' : 'graph-down-arrow' "
-    />
+    <app-panel class="card-span-2">
+      <app-card
+        [cardLabel]="item.label"
+        [cardValue]="item.value"
+        [type]="item.type"
+        [icon]="item.type == 'up' ? 'graph-up-arrow' : 'graph-down-arrow'"
+      />
+    </app-panel>
   }
 
   <app-panel title="Atividades Recentes" class="card-span-5">
-    <app-dashboard-activities/>
+    <app-dashboard-activities />
   </app-panel>
 
-  <div style="display: flex; flex-direction: column; gap: 16px;" class="card-span-3">
+  <div style="display: flex; flex-direction: column; gap: 16px" class="card-span-3">
     <app-panel title="Distribuição de Planos">
-      <app-dashboard-distribution/>
+      <app-dashboard-distribution />
     </app-panel>
     <app-panel title="Próximos Vencimentos">
-      <app-dashboard-payments-warning/>
+      <app-dashboard-payments-warning />
     </app-panel>
   </div>
 </div>

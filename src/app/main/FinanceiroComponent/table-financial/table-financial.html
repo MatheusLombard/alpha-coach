@@ -1,0 +1,108 @@
+<style>
+  table {
+    width: calc(100% + 32px);
+    border-collapse: collapse;
+    margin: -24px -16px;
+  }
+  thead {
+    color: var(--cor-primaria);
+  }
+  thead th,
+  tbody tr {
+    text-align: start;
+    padding: 16px;
+  }
+  td {
+    border: 1px solid var(--border-subtle);
+  }
+
+  /* table tbody tr{
+    text-align: center;
+    padding: 16px;
+  }*/
+  table tbody tr td {
+    padding: 16px;
+  }
+  .avatar {
+    width: 8%;
+    border-radius: 12px;
+  }
+  .div-students {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .div-students p {
+    color: var(--cor-primaria);
+  }
+  .div-type {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    width: auto;
+    padding: 8px 16px;
+    border-radius: 25px;
+    display: inline-block;
+  }
+  .div-type.danger {
+    background-color: color-mix(in srgb, var(--cor-danger) 20%, transparent);
+  }
+
+  .div-type p {
+    text-align: center;
+    color: var(--cor-primaria);
+    font-weight: 500;
+  }
+  .div-type.danger p, .div-type.danger i {
+    color: var(--cor-danger);
+  }
+  .defaut-format {
+    color: var(--cor-primaria);
+    font-weight: 600;
+  }
+</style>
+
+<table class="font-body">
+  <thead>
+    <th>Alunos</th>
+    <th>Plano</th>
+    <th>Valor Parcela</th>
+    <th>Vencimento</th>
+    <th>Status</th>
+    <!-- <th></th> -->
+  </thead>
+  <tbody>
+    @for (item of listFinancial; track item.id) {
+      <tr>
+        <td>
+          <div class="div-students">
+            <div class="dsc-students">
+              <h3>{{item.aluno}}</h3>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="div-type">
+            <p>{{item.plano}}</p>
+          </div>
+        </td>
+        <td class="defaut-format">
+          <p>
+            {{item.valor}}
+          </p>
+        </td>
+        <td class="defaut-format">{{item.vencimento}}</td>
+        <td>
+          <div class="div-type danger">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+              <i class="bi bi-dot" style="margin-left: -6px;"></i>
+              <p>{{item.status.toLocaleUpperCase().replace('-', ' ')}}</p>
+            </div>
+          </div>
+        </td>
+        <td class="defaut-format">
+          <i class="bi bi-three-dots-vertical"></i>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

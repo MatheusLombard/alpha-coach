@@ -2,6 +2,7 @@ import { Routes } from '@angular/router'
 import { MainLayoutComponent } from "./MainLayoutComponent/MainLayoutComponent";
 import { DashboardComponent } from './DashboardComponent/DashboardComponent';
 import { StudentComponent } from './StudentComponent/StudentComponent';
+import { FinanceiroComponent } from './FinanceiroComponent/FinanceiroComponent';
 
 export const mainRoutes : Routes = [
   {
@@ -22,7 +23,7 @@ export const mainRoutes : Routes = [
       },
       {
         path: 'financeiro',
-        component: DashboardComponent,
+        component: FinanceiroComponent,
       },
       {
         path: 'exercicio',

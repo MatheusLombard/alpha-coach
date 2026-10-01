@@ -1,0 +1,40 @@
+<style>
+  .container-dash-financial {
+    display: grid;
+    grid-template-columns: repeat(9, 2fr);
+    margin-bottom: 16px;
+    gap: 16px;
+  }
+  .container-dash-financial app-panel{
+    display: flex;
+    gap: 10px;
+  }
+  .container-students .teste{
+    display: grid;
+    grid-template-columns: repeat(8, 2fr);
+    gap: 16px;
+    grid-column: 'span 3';
+  }
+  .panel {
+    padding: 0;
+  }
+</style>
+
+<div class="container-dash-financial">
+  <app-panel class="teste" >
+    <app-card-financial cardLabel="vencendo"  />
+  </app-panel>
+  <app-panel [style.grid-column]="'span 3'">
+    <app-card-financial cardLabel="vencendo"  />
+  </app-panel>
+  <app-panel [style.grid-column]="'span 3'">
+    <app-card-financial cardLabel="vencendo"  />
+  </app-panel>
+</div>
+<div class="container-students">
+  <app-input-search [style.grid-column]="'span 7'" />
+  <app-buttons icon="plus-circle" value="Novo Aluno" class="send-button" />
+  <app-panel [style.grid-column]="'span 8'" class="panel" [title]="'Titulos a Receber'">
+    <app-table-financial />
+  </app-panel>
+</div>
