@@ -1,2 +1,9 @@
-<label [for]="id()" class="font-label" style="display: block">{{id().toUpperCase()}}</label>
-<input [type]="type()" [id]="id()" class="input-text font-label" [placeholder]="'digite seu ' + id()" />
+<div class="input-form">
+  <label [for]="id()" class="input-label font-label" style="display: block">{{ id().toUpperCase() }}</label>
+  <input
+    [type]="type()"
+    [id]="id()"
+    class="input-text font-label"
+    [placeholder]="'Digite seu ' + id()"
+  />
+</div>

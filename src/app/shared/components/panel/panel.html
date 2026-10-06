@@ -1,4 +1,6 @@
 <div class="panel-container">
-  <h3 class="font-subtitle">{{title()}}</h3>
+  <h3 class="font-subtitle"
+    [class.none] = "title() == ''"
+  >{{title()}}</h3>
   <ng-content/>
 </div>

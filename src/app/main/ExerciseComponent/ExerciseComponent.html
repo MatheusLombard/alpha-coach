@@ -1,0 +1,17 @@
+<style>
+  .container-exercises{
+    display: grid;
+    grid-template-columns: repeat(8, 2fr);
+
+  }
+</style>
+<div class="container-exercises">
+  <app-panel [style.grid-column]="'span 4'" title="Novo Exercicio">
+    <app-input-text id="Nome do Exercicio" type="text"></app-input-text>
+    <app-input-text id="Grupo Muscular" type="text"></app-input-text>
+    <app-input-text id="Equipamento" type="text"></app-input-text>
+    <app-radio [id]="'Dificuldade'" [options]="['Iniciante', 'Intermediario', 'Avançado']"></app-radio>
+    <app-input-area id="Observações" />
+    <app-buttons class="send-button" [value]="'SALVAR'"/>
+  </app-panel>
+</div>

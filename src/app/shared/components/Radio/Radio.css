@@ -1,0 +1,29 @@
+:host {
+  display: block;
+}
+
+.radio-form{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.radio-label{
+  color: var(--cor-primaria)
+}
+.radio-options{
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: space-between;
+}
+.radio-options .option{
+  flex: 1;
+  border-radius: 16px;
+  padding: 16px;
+  background-color: transparent;
+  border: 1px solid var(--border-subtle);
+  color: #fff;
+}
+.radio-options .option.active{
+  background-color: var(--cor-accent);
+}

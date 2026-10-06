@@ -1,4 +1,10 @@
 <style>
+  :host{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
   .card-header {
     display: flex;
     gap: 8px;
@@ -8,7 +14,8 @@
     color: var(--cor-primaria);
   }
   .card-body .card-value{
-    color: var(--cor-success)
+    color: var(--cor-success);
+    font-weight: 700;
   }
   .card-body p{
     color: var(--cor-primaria);

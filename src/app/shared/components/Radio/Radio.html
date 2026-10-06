@@ -1,0 +1,12 @@
+<div class="radio-form">
+  <label [for]="id()" class="radio-label font-label" style="display: block">{{
+    id().toUpperCase()
+  }}</label>
+  <div class="radio-options">
+    @for (option of options(); track $index) {
+      <button (click)="optionSelected(option.toUpperCase())" class="option" [class.active]="choosed() === option.toUpperCase()">
+        {{ option }}
+      </button>
+    }
+  </div>
+</div>

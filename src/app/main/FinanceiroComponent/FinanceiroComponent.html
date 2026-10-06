@@ -9,7 +9,7 @@
     display: flex;
     gap: 10px;
   }
-  .container-students .teste{
+  .container-financial{
     display: grid;
     grid-template-columns: repeat(8, 2fr);
     gap: 16px;
@@ -21,7 +21,7 @@
 </style>
 
 <div class="container-dash-financial">
-  <app-panel class="teste" >
+  <app-panel [style.grid-column]="'span 3'" >
     <app-card-financial cardLabel="vencendo"  />
   </app-panel>
   <app-panel [style.grid-column]="'span 3'">
@@ -31,7 +31,7 @@
     <app-card-financial cardLabel="vencendo"  />
   </app-panel>
 </div>
-<div class="container-students">
+<div class="container-financial">
   <app-input-search [style.grid-column]="'span 7'" />
   <app-buttons icon="plus-circle" value="Novo Aluno" class="send-button" />
   <app-panel [style.grid-column]="'span 8'" class="panel" [title]="'Titulos a Receber'">

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 
 @Component({
@@ -9,5 +9,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 })
 export class Panel {
 
-  title = input<string>()
+  title = input<string>('')
+
 }
