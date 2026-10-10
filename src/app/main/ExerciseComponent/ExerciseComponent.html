@@ -1,17 +1,25 @@
 <style>
-  .container-exercises{
+  .container-exercises {
     display: grid;
     grid-template-columns: repeat(8, 2fr);
-
+    gap: 16px;
   }
 </style>
 <div class="container-exercises">
   <app-panel [style.grid-column]="'span 4'" title="Novo Exercicio">
-    <app-input-text id="Nome do Exercicio" type="text"></app-input-text>
-    <app-input-text id="Grupo Muscular" type="text"></app-input-text>
-    <app-input-text id="Equipamento" type="text"></app-input-text>
-    <app-radio [id]="'Dificuldade'" [options]="['Iniciante', 'Intermediario', 'Avançado']"></app-radio>
-    <app-input-area id="Observações" />
-    <app-buttons class="send-button" [value]="'SALVAR'"/>
+    <app-input-text id="Nome do Exercicio" type="text" [value]="nome()"/>
+    <app-input-text id="Grupo Muscular" type="text" [value]="grupoMuscular()"/>
+    <app-input-text id="Equipamento" type="text" [value]="equipamento()"/>
+    <app-radio
+      [id]="'Dificuldade'"
+      [options]="['Iniciante', 'Intermediario', 'Avançado']"
+      [optionChoosed]="dificuldade()"
+    ></app-radio>
+    <app-input-area id="Observações" [value]="observacoes()"/>
+    <app-buttons class="send-button" [value]="'SALVAR'" />
+  </app-panel>
+  <app-panel [style.grid-column]="'span 4'" title="Biblioteca de Exercicios">
+    <app-input-search/>
+    <app-exercises-list (chosedExercise)="valueExercise($event)"/>
   </app-panel>
 </div>

@@ -8,4 +8,5 @@ import { Component, input } from '@angular/core';
 })
 export class InputArea {
   public id = input.required<string>()
+  public value = input.required<string>()
 }

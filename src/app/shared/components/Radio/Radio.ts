@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, linkedSignal, signal } from '@angular/core';
+import { Dificuldade } from '../../../main/ExerciseComponent/exercises-list/exercises-list';
 
 @Component({
   selector: 'app-radio',
@@ -8,10 +9,14 @@ import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core
 })
 export class Radio {
   public id = input.required<string>();
-  public options = input.required<string[]>();
-  public choosed= signal<string>('INTERMEDIARIO');
+  public options = input.required<Dificuldade[]>();
+  public optionChoosed = input<Dificuldade>()
+  public choosed= linkedSignal<Dificuldade>(() => this.optionChoosed() ?? 'Intermediario');
 
-  public optionSelected(option: string) {
+   print(){
+  }
+  public optionSelected(option: Dificuldade) {
+    console.log({teste: this.optionChoosed()})
     this.choosed.set(option)
   }
 }

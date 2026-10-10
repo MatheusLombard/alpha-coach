@@ -4,7 +4,7 @@
   }}</label>
   <div class="radio-options">
     @for (option of options(); track $index) {
-      <button (click)="optionSelected(option.toUpperCase())" class="option" [class.active]="choosed() === option.toUpperCase()">
+      <button (click)="optionSelected(option)" class="option" [class.active]="choosed() === option">
         {{ option }}
       </button>
     }

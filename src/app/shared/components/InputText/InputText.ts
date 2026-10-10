@@ -10,5 +10,6 @@ import { email } from '@angular/forms/signals';
 export class InputText {
   public id = input.required<string>();
   public type = input.required<string>();
+  public value= input<string>();
 
 }

@@ -1,0 +1,27 @@
+@for (item of items; track item.id) {
+  <ul
+    class="ul-exercise"
+    (click)="
+      chosedExercise.emit({
+        id: item.id,
+        nome: item.nome,
+        grupoMuscular: item.grupoMuscular,
+        equipamento: item.equipamento,
+        dificuldade: item.dificuldade,
+        observacoes: item.observacoes,
+      })
+    "
+  >
+    <li class="line-exercise">
+      <div class="group-exercise">
+        <p class="font-body">{{ sigla(item.grupoMuscular) }}</p>
+      </div>
+      <div>
+        <h3 class="font-body">{{ item.nome }}</h3>
+        <h6 [style.color]="'var(--cor-primaria)'">
+          {{ item.grupoMuscular }} - {{ item.equipamento }}
+        </h6>
+      </div>
+    </li>
+  </ul>
+}
