@@ -1,0 +1,50 @@
+:host {
+  display: block;
+}
+.display-default{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.perfil-container {
+  display: grid;
+  grid-template-columns: repeat(8, 2fr);
+  gap: 16px;
+}
+.panel-perfil-header{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.group-informations{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 85%;
+  margin: auto;
+  justify-content: center;
+
+}
+.panel-informations {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-informations p {
+  font-size: var(--font-label);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 24px;
+}
+
+.form-grid .full-row {
+  grid-column: span 2;
+}

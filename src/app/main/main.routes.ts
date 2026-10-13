@@ -4,6 +4,7 @@ import { DashboardComponent } from './DashboardComponent/DashboardComponent';
 import { StudentComponent } from './StudentComponent/StudentComponent';
 import { FinanceiroComponent } from './FinanceiroComponent/FinanceiroComponent';
 import { ExerciseComponent } from './ExerciseComponent/ExerciseComponent';
+import { PerfilComponent } from './PerfilComponent/PerfilComponent';
 
 export const mainRoutes : Routes = [
   {
@@ -32,7 +33,7 @@ export const mainRoutes : Routes = [
       },
       {
         path: 'perfil',
-        component: DashboardComponent,
+        component: PerfilComponent,
       },
       {
         path: '**',

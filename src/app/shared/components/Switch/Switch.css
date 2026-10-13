@@ -1,0 +1,51 @@
+:host {
+  display: block;
+}
+
+.switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.switch-row:last-child {
+  border-bottom: none;
+}
+
+.switch-label {
+  color: #fff;
+}
+
+.switch-track {
+  flex-shrink: 0;
+  width: 40px;
+  height: 22px;
+  border-radius: 999px;
+  border: none;
+  background-color: var(--border-subtle);
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.switch-track.active {
+  background-color: var(--cor-accent);
+}
+
+.switch-thumb {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #fff;
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+}
+
+.switch-track.active .switch-thumb {
+  transform: translateX(18px);
+}

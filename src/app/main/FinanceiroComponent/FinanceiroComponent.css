@@ -1,3 +1,19 @@
 :host {
   display: block;
 }
+  .container-dash-financial {
+    display: grid;
+    grid-template-columns: repeat(9, 2fr);
+    margin-bottom: 16px;
+    gap: 16px;
+  }
+  .container-dash-financial app-panel{
+    display: flex;
+    gap: 10px;
+  }
+  .container-financial{
+    display: grid;
+    grid-template-columns: repeat(8, 2fr);
+    gap: 16px;
+    grid-column: 'span 3';
+  }

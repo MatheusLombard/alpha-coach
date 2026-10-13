@@ -1,0 +1,73 @@
+<div class="perfil-container">
+  <div [style.grid-column]="'span 2'" class="display-default">
+    <!-- INFORMAÇÕES HEADER DE PERFIL -->
+    <app-panel [style.grid-column]="'span 2'">
+      <div class="panel-perfil-header">
+        <img src="https://i.pravatar.cc/150?img=7" alt="" class="perfil-brand" />
+        <h3>Tiago Mendes</h3>
+        <h5>Personal Trainer</h5>
+      </div>
+      <div class="group-informations">
+        <app-panel padding="8px">
+          <div class="panel-informations">
+            <p>Alunos Ativos</p>
+            <p>34</p>
+          </div>
+        </app-panel>
+        <app-panel padding="8px">
+          <div class="panel-informations">
+            <p>Anos de Experiencia</p>
+            <p>8</p>
+          </div>
+        </app-panel>
+        <app-panel padding="8px">
+          <div class="panel-informations">
+            <p>Avaliação Média</p>
+            <p>4.9</p>
+          </div>
+        </app-panel>
+      </div>
+    </app-panel>
+
+    <!-- CONFIGURAÇÕES(PREFERENCIAD DO APP) -->
+    <app-panel title="Preferencias" [style.grid-column]="'span 2'">
+      <div class="preferences-list">
+        <app-switch label="Notificações Push" [checked]="true" />
+        <app-switch label="Alertas por e-mail" [checked]="true" />
+        <app-switch label="PDF automático" [checked]="false" />
+        <app-switch label="Tema escuro" [checked]="true" />
+        <app-switch label="Autentificação 2FA" [checked]="false" />
+      </div>
+    </app-panel>
+  </div>
+
+  <!-- INFORMAÇÕES PESSOAIS -->
+  <div [style.grid-column]="'span 6'" class="display-default">
+    <app-panel title="Informações Pessoais">
+      <div class="form-grid">
+        <app-input-text id="Nome Completo" type="text" value="Tiago Mendes" />
+        <app-input-text id="CREF" type="text" value="123456-G/SP" />
+        <app-input-text id="E-mail" type="email" value="tiago@alphacoach.com.br" />
+        <app-input-text id="Telefone / WhatsApp" type="tel" value="(11) 99876-5432" />
+        <app-input-text id="Data de Nascimento" type="text" value="14/03/1990" />
+        <app-input-text id="Cidade / Estado" type="text" value="Sao Paulo, SP" />
+        <app-input-area
+          class="full-row"
+          id="Bio / Especialidades"
+          value="Personal trainer certificado com foco em hipertrofia, emagrecimento e performance atletica. Atendo presencialmente em Sao Paulo e online para todo o Brasil."
+        />
+      </div>
+      <app-buttons class="send-button" [value]="'SALVAR ALTERAÇÕES'" />
+    </app-panel>
+
+    <!-- ALTERAR SENHA -->
+    <app-panel title="Alterar Senha">
+      <div class="form-grid">
+        <app-input-text class="full-row" id="Senha Atual" type="password" />
+        <app-input-text id="Nova Senha" type="password" />
+        <app-input-text id="Confirmar Nova Senha" type="password" />
+      </div>
+      <app-buttons class="send-button" [value]="'ALTERAR SENHA'" />
+    </app-panel>
+  </div>
+</div>

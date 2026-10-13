@@ -1,3 +1,8 @@
 :host {
   display: block;
 }
+  .container-students{
+    display: grid;
+    grid-template-columns: repeat(8, 2fr);
+    gap: 16px;
+  }

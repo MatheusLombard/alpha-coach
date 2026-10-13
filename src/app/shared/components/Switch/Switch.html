@@ -1,0 +1,13 @@
+<div class="switch-row">
+  <span class="switch-label font-body">{{ label() }}</span>
+  <button
+    type="button"
+    class="switch-track"
+    role="switch"
+    [attr.aria-checked]="isChecked()"
+    [class.active]="isChecked()"
+    (click)="toggle()"
+  >
+    <span class="switch-thumb"></span>
+  </button>
+</div>

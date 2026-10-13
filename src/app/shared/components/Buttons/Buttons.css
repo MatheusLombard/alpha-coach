@@ -16,8 +16,9 @@ button i {
 }
 button:hover {
   background-color: var(--cor-accent);
-  scale: 1.05;
+  scale: 1.01;
   opacity: 1;
+  border-radius: 12px;
 }
 button:hover i {
   color: #fff;
@@ -32,7 +33,7 @@ button:hover i {
   opacity: 1;
   cursor: pointer;
 }
-.send-button i{
+.send-button i {
   color: #fff;
 }
 
@@ -60,6 +61,7 @@ button:hover i {
 }
 
 .menu-button:hover {
+  border-radius: 12px;
   background-color: rgba(255, 255, 255, 0.05);
   scale: 1; /* remova o "scale: 1.05" do estado normal do button, ele deixa o menu tremido */
 }
