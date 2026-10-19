@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output } from '@angular/core';
+
+export interface Financial {
+  id: number;
+  aluno: string;
+  plano: string;
+  modalidade: string;
+  valor: number;
+  vencimento: string;
+  status: string;
+}
 
 @Component({
   selector: 'app-table-financial',
@@ -8,7 +18,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class TableFinancial {
 
-  listFinancial =[
+  public chosedFinancial = output<Financial>()
+
+  listFinancial: Financial[] =[
   {
     "id": 1,
     "aluno": "Carlos Almeida",

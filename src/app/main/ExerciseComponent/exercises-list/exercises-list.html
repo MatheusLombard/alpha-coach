@@ -1,6 +1,8 @@
 @for (item of items; track item.id) {
   <ul
     class="ul-exercise"
+    draggable="true"
+    (dragstart)="$event.dataTransfer?.setData('text/plain', item.nome); dragExercise.emit(item)"
     (click)="
       chosedExercise.emit({
         id: item.id,

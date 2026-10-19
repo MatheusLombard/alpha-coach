@@ -1,0 +1,98 @@
+<style>
+  .container{
+    display: grid;
+    grid-template-columns: repeat(8, 2fr);
+    gap: 16px;
+  }
+  .panel-student{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .img-panel-student{
+    border-radius: 50%;
+    width: 15%;
+
+  }
+  .drop-zone{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 160px;
+  }
+  .drop-placeholder{
+    color: var(--cor-primaria);
+    text-align: center;
+    margin: auto;
+  }
+  .vinculado{
+    border: 1px solid var(--border-subtle);
+    border-radius: 15px;
+    padding: 12px;
+  }
+  .vinculado-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .vinculado-header i{
+    cursor: pointer;
+    color: var(--cor-primaria);
+  }
+  .vinculado-campos{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .vinculado-campos label{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: var(--cor-primaria);
+    font-size: 12px;
+  }
+  .vinculado-campos input{
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 8px;
+  }
+</style>
+
+<div class="container">
+  <app-panel [style.grid-column]="'span 4'">
+    <div class="panel-student">
+      <img src="https://i.pravatar.cc/150?img=47 " alt="" class="img-panel-student">
+      <p>Nome do Aluno</p>
+    </div>
+    <app-panel title="Exercicios Vinculados">
+      <div class="drop-zone" (dragover)="allowDrop($event)" (drop)="dropExercise($event)">
+        @for (item of vinculados(); track $index; let i = $index) {
+          <div class="vinculado">
+            <div class="vinculado-header">
+              <p>{{ item.exercicio.nome }}</p>
+              <i class="bi bi-x-lg" (click)="removeVinculado(i)"></i>
+            </div>
+            <div class="vinculado-campos">
+              <label>Series <input type="number" [value]="item.series" /></label>
+              <label>Repeticoes <input type="number" [value]="item.repeticoes" /></label>
+              <label>Carga (kg) <input type="number" [value]="item.carga" /></label>
+              <label>Descanso (s) <input type="number" [value]="item.descanso" /></label>
+            </div>
+          </div>
+        } @empty {
+          <p class="drop-placeholder">Arraste um exercicio da biblioteca para ca</p>
+        }
+      </div>
+    </app-panel>
+  </app-panel>
+  <app-panel [style.grid-column]="'span 4'" title="Biblioteca de Exercicios">
+    <app-input-search />
+    <app-exercises-list (dragExercise)="startDrag($event)" />
+  </app-panel>
+</div>

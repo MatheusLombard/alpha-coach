@@ -1,65 +1,4 @@
-<style>
-  table {
-    width: calc(100% + 32px);
-    border-collapse: collapse;
-    margin: -24px -16px;
-  }
-  thead {
-    color: var(--cor-primaria);
-  }
-  thead th,
-  tbody tr {
-    text-align: start;
-    padding: 16px;
-  }
-  td {
-    border: 1px solid var(--border-subtle);
-  }
-
-  /* table tbody tr{
-    text-align: center;
-    padding: 16px;
-  }*/
-  table tbody tr td {
-    padding: 16px;
-  }
-  .avatar {
-    width: 8%;
-    border-radius: 12px;
-  }
-  .div-students {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-  .div-students p {
-    color: var(--cor-primaria);
-  }
-  .div-type {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    width: auto;
-    padding: 8px 16px;
-    border-radius: 25px;
-    display: inline-block;
-  }
-  .div-type.danger {
-    background-color: color-mix(in srgb, var(--cor-danger) 20%, transparent);
-  }
-
-  .div-type p {
-    text-align: center;
-    color: var(--cor-primaria);
-    font-weight: 500;
-  }
-  .div-type.danger p, .div-type.danger i {
-    color: var(--cor-danger);
-  }
-  .defaut-format {
-    color: var(--cor-primaria);
-    font-weight: 600;
-  }
-</style>
+<style></style>
 
 <table class="font-body">
   <thead>
@@ -92,17 +31,38 @@
             {{ item.plano }}
           </p>
         </td>
-        <td class="defaut-format">{{item.desde}}</td>
+        <td class="defaut-format">{{ item.desde }}</td>
         <td>
           <div class="div-type danger">
-            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-              <i class="bi bi-dot" style="margin-left: -6px;"></i>
-              <p>{{item.status.toLocaleUpperCase().replace('-', ' ')}}</p>
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <i class="bi bi-dot" style="margin-left: -6px"></i>
+              <p>{{ item.status.toLocaleUpperCase().replace('-', ' ') }}</p>
             </div>
           </div>
         </td>
         <td class="defaut-format">
-          <i class="bi bi-three-dots-vertical"></i>
+          <i
+            class="bi bi-three-dots-vertical"
+            (click)="
+              chosedStudents.emit({
+                id: item.id,
+                nome: item.nome,
+                email: item.email,
+                avatar: item.avatar,
+                tipo: item.tipo,
+                plano: item.plano,
+                desde: item.desde,
+                status: item.status
+              })
+            "
+          ></i>
         </td>
       </tr>
     }

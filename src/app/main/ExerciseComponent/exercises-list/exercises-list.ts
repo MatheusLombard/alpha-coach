@@ -77,4 +77,5 @@ export class ExercisesList {
   }
 
   public chosedExercise = output<Exercicio>()
+  public dragExercise = output<Exercicio>()
 }

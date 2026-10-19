@@ -5,6 +5,7 @@ import { StudentComponent } from './StudentComponent/StudentComponent';
 import { FinanceiroComponent } from './FinanceiroComponent/FinanceiroComponent';
 import { ExerciseComponent } from './ExerciseComponent/ExerciseComponent';
 import { PerfilComponent } from './PerfilComponent/PerfilComponent';
+import { TrainingComponent } from './TrainingComponent/TrainingComponent';
 
 export const mainRoutes : Routes = [
   {
@@ -21,7 +22,7 @@ export const mainRoutes : Routes = [
       },
       {
         path: 'treinos',
-        component: DashboardComponent,
+        component: TrainingComponent,
       },
       {
         path: 'financeiro',

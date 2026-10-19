@@ -1,0 +1,41 @@
+<app-panel title="Cadastro de Aluno">
+  <div class="container-register">
+    <div class="container-photo">
+      <div class="photo-preview">
+        @if (avatar()) {
+          <img [src]="avatar()" alt="Foto do aluno" />
+        } @else {
+          <i class="bi bi-person"></i>
+        }
+      </div>
+      <app-input-text id="Foto do Aluno" type="file" value="" />
+    </div>
+    <app-input-text [style.grid-column]="'span 2'" id="Nome" type="text" [value]="nome()" />
+    <app-input-text id="Email" type="email" [value]="email()" />
+    <app-input-text id="Telefone" type="tel" [value]="telefone()" />
+    <app-input-text id="CPF" type="text" [value]="cpf()" />
+    <app-input-text id="Data de Nascimento" type="date" [value]="dt_nasc()" />
+    <app-input-text id="Tipo de Atendimento" type="text" [value]="tipo()" />
+    <app-input-text id="Plano" type="text" [value]="plano()" />
+    <app-input-text id="Data de Inicio" type="date" [value]="dt_inc()" />
+    <app-input-text id="Valor da Mensalidade" type="number" [value]="valor()" />
+    <app-input-text id="Peso" type="number" [value]="peso()" />
+    <app-input-text id="Altura" type="number" [value]="altura()" />
+    <app-input-text [style.grid-column]="'span 2'" id="Objetivo" type="text" [value]="objetivo()" />
+    <app-input-area [style.grid-column]="'span 2'" id="Observações" [value]="observacao()" />
+  </div>
+
+  <div class="container-buttons">
+    <app-buttons
+      icon="check-circle"
+      value="SALVAR"
+      [class]="action() == 'create' ? 'send-button' : ''"
+    />
+    <app-buttons
+      icon="pencil-square"
+      value="ALTERAR"
+      [class]="action() == 'update' ? 'send-button' : ''"
+    />
+    <app-buttons icon="trash" value="EXCLUIR" />
+  </div>
+</app-panel>

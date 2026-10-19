@@ -1,11 +1,19 @@
-<style>
+<app-modal (closeModal)="modal.set($event)" [style.display]="modal() ? 'block' : 'none'">
+  <app-register-students
+    [avatar]="avatar()"
+    [nome]="nome()"
+    [email]="email()"
+    [tipo]="tipo()"
+    [plano]="plano()"
+    [action]="action()"
 
-</style>
+  />
+</app-modal>
 
 <div class="container-students">
-  <app-input-search [style.grid-column]="'span 7'"/>
-  <app-buttons icon="plus-circle" value="Novo Aluno" class="send-button"/>
-  <app-panel [style.grid-column] = "'span 8'">
-    <app-table-students/>
+  <app-input-search [style.grid-column]="'span 7'" />
+  <app-buttons icon="plus-circle" value="Novo Aluno" class="send-button" (click)="modal.set(true)"/>
+  <app-panel [style.grid-column]="'span 8'">
+    <app-table-students (chosedStudents)="chosedStudent($event)" />
   </app-panel>
 </div>
