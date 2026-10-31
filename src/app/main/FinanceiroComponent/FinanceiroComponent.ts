@@ -11,7 +11,7 @@ import { RegisterFinancial } from './register-financial/register-financial';
 
 @Component({
   selector: 'app-financeiro-component',
-  imports: [InputSearch, Panel, Buttons, TableStudents, TableFinancial, Card, CardFinancial, Modal, RegisterFinancial],
+  imports: [InputSearch, Panel, Buttons, TableFinancial, CardFinancial, Modal, RegisterFinancial],
   templateUrl: './FinanceiroComponent.html',
   styleUrl: './FinanceiroComponent.css',
 })
