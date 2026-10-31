@@ -4,7 +4,7 @@
   }}</label>
   <div class="radio-options">
     @for (option of options(); track $index) {
-      <button (click)="optionSelected(option)" class="option" [class.active]="choosed() === option">
+      <button (click)="optionSelected(option)" class="option" [class.active]="chosen() === option">
         {{ option }}
       </button>
     }

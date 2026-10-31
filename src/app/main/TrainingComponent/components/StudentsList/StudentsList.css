@@ -1,0 +1,23 @@
+.ul-students {
+  padding: 16px 8px;
+  list-style-type: none;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.ul-students .line-students {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+.group-students {
+  border: 1px solid var(--border-subtle);
+  padding: 8px;
+  display: inline-block;
+  border-radius: 35%;
+  font-weight: 800;
+}
+.group-students p {
+  font-weight: 800;
+  color: var(--cor-accent);
+}
+

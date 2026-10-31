@@ -1,11 +1,12 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { Panel } from '../../shared/components/panel/panel';
+import { Component, signal } from '@angular/core';
+import { Panel } from '../../shared/components/Panel/Panel';
 import { InputText } from '../../shared/components/InputText/InputText';
 import { Radio } from '../../shared/components/Radio/Radio';
 import { InputArea } from '../../shared/components/InputArea/InputArea';
 import { Buttons } from '../../shared/components/Buttons/Buttons';
-import { InputSearch } from '../StudentComponent/components/input-search/input-search';
-import { Dificuldade, Exercicio, ExercisesList } from './exercises-list/exercises-list';
+import { InputSearch } from '../StudentComponent/components/InputSearch/InputSearch';
+import { ExercisesList } from './ExercisesList/ExercisesList';
+import { Difficulty, Exercise } from '../../types/exercise';
 
 @Component({
   selector: 'app-exercise-component',
@@ -16,21 +17,23 @@ import { Dificuldade, Exercicio, ExercisesList } from './exercises-list/exercise
 export class ExerciseComponent {
 
     id = signal<number>(0);
-    nome = signal<string>('');
-    grupoMuscular = signal<string>('');
-    equipamento = signal<string>('');
-    dificuldade = signal<Dificuldade>('Intermediario');
-    observacoes = signal<string>('');
+    name = signal<string>('');
+    muscleGroup = signal<string>('');
+    equipment = signal<string>('');
+    difficulty = signal<Difficulty>('Intermediário');
+    notes = signal<string>('');
 
+    public valueSearch = signal<string | undefined>('');
+    public valueSearched(value: string | undefined){
+      this.valueSearch.set(value)
+    }
 
-  public valueExercise(value:Exercicio){
-    // this.id.set(value.id)
-    this.nome.set(value.nome)
-    this.grupoMuscular.set(value.grupoMuscular)
-    this.equipamento.set(value.equipamento)
-    this.dificuldade.set(value.dificuldade)
-    this.observacoes.set(value.observacoes)
-    
+  public valueExercise(value: Exercise){
+    this.name.set(value.name)
+    this.muscleGroup.set(value.muscleGroup)
+    this.equipment.set(value.equipment)
+    this.difficulty.set(value.difficulty)
+    this.notes.set(value.notes)
   }
 
 }

@@ -1,25 +1,21 @@
-<style>
-  .container-exercises {
-    display: grid;
-    grid-template-columns: repeat(8, 2fr);
-    gap: 16px;
-  }
-</style>
 <div class="container-exercises">
-  <app-panel [style.grid-column]="'span 4'" title="Novo Exercicio">
-    <app-input-text id="Nome do Exercicio" type="text" [value]="nome()"/>
-    <app-input-text id="Grupo Muscular" type="text" [value]="grupoMuscular()"/>
-    <app-input-text id="Equipamento" type="text" [value]="equipamento()"/>
+  <app-panel [style.grid-column]="'span 4'" title="Novo Exercício">
+    <app-input-text id="Nome do Exercício" type="text" [value]="name()" />
+    <app-input-text id="Grupo Muscular" type="text" [value]="muscleGroup()" />
+    <app-input-text id="Equipamento" type="text" [value]="equipment()" />
     <app-radio
       [id]="'Dificuldade'"
-      [options]="['Iniciante', 'Intermediario', 'Avançado']"
-      [optionChoosed]="dificuldade()"
+      [options]="['Iniciante', 'Intermediário', 'Avançado']"
+      [optionChosen]="difficulty()"
     ></app-radio>
-    <app-input-area id="Observações" [value]="observacoes()"/>
-    <app-buttons class="send-button" [value]="'SALVAR'" />
+    <app-input-area id="Observações" [value]="notes()" />
+    <div class="group-buttons">
+      <app-buttons class="" [style.flex]="'1'" [value]="'NOVO'" />
+      <app-buttons class="send-button" [style.flex]="'1'" [value]="'SALVAR'" />
+    </div>
   </app-panel>
-  <app-panel [style.grid-column]="'span 4'" title="Biblioteca de Exercicios">
-    <app-input-search/>
-    <app-exercises-list (chosedExercise)="valueExercise($event)"/>
+  <app-panel [style.grid-column]="'span 4'" title="Biblioteca de Exercícios">
+    <app-input-search (valueSearched)="valueSearched($event)" />
+    <app-exercises-list [valueSearched]="valueSearch()" (chosenExercise)="valueExercise($event)" />
   </app-panel>
 </div>

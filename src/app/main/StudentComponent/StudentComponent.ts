@@ -1,19 +1,11 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { Panel } from '../../shared/components/panel/panel';
-import { InputSearch } from './components/input-search/input-search';
+import { Component, signal } from '@angular/core';
+import { Panel } from '../../shared/components/Panel/Panel';
+import { InputSearch } from './components/InputSearch/InputSearch';
 import { Buttons } from '../../shared/components/Buttons/Buttons';
-import { Students, TableStudents } from './components/table-students/table-students';
-import { Modal } from '../../shared/components/modal/modal';
-import { RegisterStudents } from './components/register-students/register-students';
-
-// id: 1,
-      // nome: 'Fernanda Lima',
-      // email: 'fernanda@email.com',
-      // avatar: 'https://i.pravatar.cc/150?img=47',
-      // tipo: 'Online',
-      // plano: 'Trimestral',
-      // desde: 'Mar 2024',
-      // status: 'em-dia',
+import { TableStudents } from './components/TableStudents/TableStudents';
+import { Student } from '../../types/student';
+import { Modal } from '../../shared/components/Modal/Modal';
+import { RegisterStudents } from './components/RegisterStudents/RegisterStudents';
 
 @Component({
   selector: 'app-student-component',
@@ -22,24 +14,29 @@ import { RegisterStudents } from './components/register-students/register-studen
   styleUrl: './StudentComponent.css',
 })
 export class StudentComponent {
-  public nome = signal<string>('')
+  public name = signal<string>('')
   public email = signal<string>('')
   public avatar = signal<string>('')
-  public tipo = signal<'Online' | 'Presencial'>('Online')
-  public plano = signal<string>('')
-  public desde = signal<string>('')
+  public type = signal<'Online' | 'Presencial'>('Online')
+  public plan = signal<string>('')
+  public since = signal<string>('')
   public status = signal<string>('')
 
   public modal = signal<boolean>(false)
   public action = signal<string>('create')
 
-  public chosedStudent(student: Students) {
-    this.nome.set(student.nome);
+  public valueSearch = signal<string | undefined>('');
+  public valueSearched(value: string | undefined){
+    this.valueSearch.set(value)
+  }
+
+  public chosenStudent(student: Student) {
+    this.name.set(student.name);
     this.email.set(student.email);
     this.avatar.set(student.avatar);
-    this.tipo.set(student.tipo);
-    this.plano.set(student.plano);
-    this.desde.set(student.desde);
+    this.type.set(student.type);
+    this.plan.set(student.plan);
+    this.since.set(student.since);
     this.status.set(student.status);
 
     this.modal.set(true)

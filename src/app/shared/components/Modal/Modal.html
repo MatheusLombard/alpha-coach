@@ -1,0 +1,9 @@
+
+<div class="modal-background" (click)="clickBackground($event)">
+  <div class="container-modal-background">
+    <button type="button" class="modal-close-button" (click)="closeModal.emit(false)">
+      <i class="bi bi-x-lg"></i>
+    </button>
+    <ng-content />
+  </div>
+</div>

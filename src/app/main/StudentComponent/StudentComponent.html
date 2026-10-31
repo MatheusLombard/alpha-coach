@@ -1,19 +1,19 @@
 <app-modal (closeModal)="modal.set($event)" [style.display]="modal() ? 'block' : 'none'">
   <app-register-students
     [avatar]="avatar()"
-    [nome]="nome()"
+    [name]="name()"
     [email]="email()"
-    [tipo]="tipo()"
-    [plano]="plano()"
+    [type]="type()"
+    [plan]="plan()"
     [action]="action()"
 
   />
 </app-modal>
 
 <div class="container-students">
-  <app-input-search [style.grid-column]="'span 7'" />
+  <app-input-search [style.grid-column]="'span 7'" (valueSearched)="valueSearched($event)" />
   <app-buttons icon="plus-circle" value="Novo Aluno" class="send-button" (click)="modal.set(true)"/>
   <app-panel [style.grid-column]="'span 8'">
-    <app-table-students (chosedStudents)="chosedStudent($event)" />
+    <app-table-students [valueSearched]="valueSearch()" (chosenStudent)="chosenStudent($event)" />
   </app-panel>
 </div>

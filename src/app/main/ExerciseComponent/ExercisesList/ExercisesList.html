@@ -1,0 +1,29 @@
+@for (item of searchExercises(); track item.id) {
+  <ul
+    class="ul-exercise"
+    draggable="true"
+    (dragstart)="dragExercise.emit(item)"
+    (click)="
+      chosenExercise.emit({
+        id: item.id,
+        name: item.name,
+        muscleGroup: item.muscleGroup,
+        equipment: item.equipment,
+        difficulty: item.difficulty,
+        notes: item.notes,
+      })
+    "
+  >
+    <li class="line-exercise">
+      <div class="group-exercise">
+        <p class="font-body">{{ abbreviation(item.muscleGroup) }}</p>
+      </div>
+      <div>
+        <h3 class="font-body">{{ item.name }}</h3>
+        <h6 [style.color]="'var(--cor-primaria)'">
+          {{ item.muscleGroup }} - {{ item.equipment }}
+        </h6>
+      </div>
+    </li>
+  </ul>
+}

@@ -1,0 +1,48 @@
+:host {
+  display: block;
+}
+.modal-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.664);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container-modal-background {
+  position: relative;
+  height: 85%;
+  width: 90%;
+  border: 1px solid var(--border-subtle);
+  background-color: #05070d;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(14, 31, 70, 0.2) 0%, transparent 45%),
+    radial-gradient(circle at 85% 55%, rgba(26, 68, 158, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(0, 0, 0, 0.12) 0%, transparent 60%);
+  border-radius: 20px;
+  overflow: auto;
+}
+.modal-close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  background-color: transparent;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 1;
+}
+.modal-close-button:hover {
+  background-color: var(--border-subtle);
+}

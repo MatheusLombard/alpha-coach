@@ -1,15 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Card } from "./components/card/card";
-import { Panel } from "../../shared/components/panel/panel";
-import { DashboardActivities } from "./components/dashboard-activities/dashboard-activities";
-import { DashboardDistribution } from "./components/dashboard-distribution/dashboard-distribution";
-import { DashboardPaymentsWarning } from './components/dashboard-payments-warning/dashboard-payments-warning';
-
-interface DashboardCards {
-  label: string,
-  value: string,
-  type: 'up' | 'down',
-}
+import { Component, inject } from '@angular/core';
+import { Card } from "./components/Card/Card";
+import { Panel } from "../../shared/components/Panel/Panel";
+import { DashboardActivities } from "./components/DashboardActivities/DashboardActivities";
+import { DashboardDistribution } from "./components/DashboardDistribution/DashboardDistribution";
+import { DashboardPaymentsWarning } from './components/DashboardPaymentsWarning/DashboardPaymentsWarning';
+import { DashboardCard } from '../../types/dashboard';
+import { DashboardService } from '../../core/services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard-component',
@@ -18,28 +14,7 @@ interface DashboardCards {
   styleUrl: './DashboardComponent.css',
 })
 export class DashboardComponent {
+  private dashboardService = inject(DashboardService);
 
-  dashboardCards: DashboardCards[] = [
-    {
-      label: 'Alunos Ativos',
-      value: '34',
-      type: 'up'
-    },
-    {
-      label: 'Treinos Este Mês',
-      value: '128',
-      type: 'up'
-    },
-    {
-      label: 'Receita mensal',
-      value: '8.400',
-      type: 'down'
-    },
-    {
-      label: 'Vencendo(7 dias)',
-      value: '6',
-      type: 'down'
-    }
-
-  ]
+  dashboardCards: DashboardCard[] = this.dashboardService.getCards();
 }

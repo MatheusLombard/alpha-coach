@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
-import { email } from '@angular/forms/signals';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-input-text',

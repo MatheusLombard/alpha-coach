@@ -1,0 +1,28 @@
+<app-panel title="Cadastro de Recebimento">
+  <div class="container-register">
+    <app-input-text [style.grid-column]="'span 2'" id="Aluno" type="text" [value]="student()" />
+    <app-input-text id="Plano" type="text" [value]="plan()" />
+    <app-input-text id="Modalidade" type="text" [value]="modality()" />
+    <app-input-text id="Valor da Parcela" type="number" [value]="amount()" />
+    <app-input-text id="Desconto" type="number" [value]="discount()" />
+    <app-input-text id="Data de Vencimento" type="date" [value]="dueDate()" />
+    <app-input-text id="Data de Pagamento" type="date" [value]="paymentDate()" />
+    <app-input-text id="Forma de Pagamento" type="text" [value]="paymentMethod()" />
+    <app-input-text id="Status" type="text" [value]="status()" />
+    <app-input-area [style.grid-column]="'span 2'" id="Observações" [value]="notes()" />
+  </div>
+
+  <div class="container-buttons">
+    <app-buttons
+      icon="check-circle"
+      value="SALVAR"
+      [class]="action() == 'create' ? 'send-button' : ''"
+    />
+    <app-buttons
+      icon="pencil-square"
+      value="ALTERAR"
+      [class]="action() == 'update' ? 'send-button' : ''"
+    />
+    <app-buttons icon="trash" value="EXCLUIR" />
+  </div>
+</app-panel>

@@ -1,0 +1,30 @@
+<app-modal (closeModal)="modal.set($event)" [style.display]="modal() ? 'block' : 'none'">
+  <app-register-financial
+    [student]="student()"
+    [plan]="plan()"
+    [modality]="modality()"
+    [amount]="amount()"
+    [dueDate]="dueDate()"
+    [status]="status()"
+    [action]="action()"
+  />
+</app-modal>
+
+<div class="container-dash-financial">
+  <app-panel [style.grid-column]="'span 3'" >
+    <app-card-financial cardLabel="vencendo"  />
+  </app-panel>
+  <app-panel [style.grid-column]="'span 3'">
+    <app-card-financial cardLabel="vencendo"  />
+  </app-panel>
+  <app-panel [style.grid-column]="'span 3'">
+    <app-card-financial cardLabel="vencendo"  />
+  </app-panel>
+</div>
+<div class="container-financial">
+  <app-input-search [style.grid-column]="'span 7'" (valueSearched)="valueSearched($event)" />
+  <app-buttons icon="plus-circle" value="Novo Recebimento" class="send-button" (click)="newFinancial()" />
+  <app-panel [style.grid-column]="'span 8'" [title]="'Títulos a Receber'">
+    <app-table-financial [valueSearched]="valueSearch()" (chosenFinancial)="chosenFinancial($event)" />
+  </app-panel>
+</div>

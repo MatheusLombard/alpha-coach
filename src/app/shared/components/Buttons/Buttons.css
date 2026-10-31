@@ -10,6 +10,7 @@ button {
   gap: 8px;
   /* opacity: 75%; */
   width: 100%;
+  justify-content: center;
 }
 button i {
   color: var(--cor-accent);

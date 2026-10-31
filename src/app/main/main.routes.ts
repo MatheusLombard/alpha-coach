@@ -2,9 +2,9 @@ import { Routes } from '@angular/router'
 import { MainLayoutComponent } from "./MainLayoutComponent/MainLayoutComponent";
 import { DashboardComponent } from './DashboardComponent/DashboardComponent';
 import { StudentComponent } from './StudentComponent/StudentComponent';
-import { FinanceiroComponent } from './FinanceiroComponent/FinanceiroComponent';
+import { FinancialComponent } from './FinancialComponent/FinancialComponent';
 import { ExerciseComponent } from './ExerciseComponent/ExerciseComponent';
-import { PerfilComponent } from './PerfilComponent/PerfilComponent';
+import { ProfileComponent } from './ProfileComponent/ProfileComponent';
 import { TrainingComponent } from './TrainingComponent/TrainingComponent';
 
 export const mainRoutes : Routes = [
@@ -26,7 +26,7 @@ export const mainRoutes : Routes = [
       },
       {
         path: 'financeiro',
-        component: FinanceiroComponent,
+        component: FinancialComponent,
       },
       {
         path: 'exercicio',
@@ -34,7 +34,7 @@ export const mainRoutes : Routes = [
       },
       {
         path: 'perfil',
-        component: PerfilComponent,
+        component: ProfileComponent,
       },
       {
         path: '**',

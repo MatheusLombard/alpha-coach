@@ -1,0 +1,12 @@
+<div class="search">
+  <input
+    class="search-input"
+    type="text"
+    name="search"
+    id="search"
+    placeholder="Buscar aluno por nome ou email..."
+    value=""
+    (input)="valueSearched.emit(input.value)"
+    #input
+  />
+</div>
