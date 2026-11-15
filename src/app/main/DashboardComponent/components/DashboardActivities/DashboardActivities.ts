@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RecentActivity } from '../../../../types/dashboard';
-import { DashboardService } from '../../../../core/services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard-activities',
@@ -9,7 +8,9 @@ import { DashboardService } from '../../../../core/services/dashboard.service';
   styleUrl: './DashboardActivities.css',
 })
 export class DashboardActivities {
-  private dashboardService = inject(DashboardService);
+  items = input<RecentActivity[]>([]);
 
-  listRecentActivities: RecentActivity[] = this.dashboardService.getRecentActivities();
+  public initials(name: string): string {
+    return name.slice(0, 2).toUpperCase();
+  }
 }

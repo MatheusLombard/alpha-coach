@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { PlanDistribution } from '../../../../types/dashboard';
-import { DashboardService } from '../../../../core/services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard-distribution',
@@ -9,12 +8,12 @@ import { DashboardService } from '../../../../core/services/dashboard.service';
   styleUrl: './DashboardDistribution.css',
 })
 export class DashboardDistribution {
-  private dashboardService = inject(DashboardService);
+  plans = input<PlanDistribution[]>([]);
 
-  qtdTotalAlunos = 30
-  plans: PlanDistribution[] = this.dashboardService.getPlansDistribution();
+  private total = computed(() => this.plans().reduce((acc, item) => acc + item.value, 0));
 
-  percentage(value: number) {
-    return (value/this.qtdTotalAlunos)*100;
+  public percentage(value: number) {
+    const total = this.total();
+    return total === 0 ? 0 : (value / total) * 100;
   }
 }

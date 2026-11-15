@@ -1,6 +1,5 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { Customer } from '../../../../types/dashboard';
-import { DashboardService } from '../../../../core/services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard-payments-warning',
@@ -9,9 +8,7 @@ import { DashboardService } from '../../../../core/services/dashboard.service';
   styleUrl: './DashboardPaymentsWarning.css',
 })
 export class DashboardPaymentsWarning {
-  private dashboardService = inject(DashboardService);
-
-  customersWarning = signal<Customer[]>(this.dashboardService.getPaymentsWarning());
+  customersWarning = input<Customer[]>([]);
 
   customersData = computed(() => {
     return this.customersWarning().map((item) => ({
@@ -25,28 +22,21 @@ export class DashboardPaymentsWarning {
     const paymentDate = new Date(time);
     const actualDate = new Date();
 
-    const actualDay = actualDate.getDate();
-    const paymentDay = paymentDate.getUTCDate();
+    const diffMs = paymentDate.setHours(0, 0, 0, 0) - actualDate.setHours(0, 0, 0, 0);
 
-    const diffDays = paymentDay - actualDay;
-
-    return diffDays;
+    return Math.round(diffMs / (1000 * 60 * 60 * 24));
   };
 
   private formatDate = (diffDays: number): string => {
     if (diffDays === 0) return 'Hoje';
     if (diffDays === 1) return 'Amanhã';
     if (diffDays > 1) return `Em ${diffDays} dias`;
-    if (diffDays <= -1) return `Vencido`;
-
-    return 'Não encontrado dias para formatar';
+    return `Vencido`;
   };
 
   private classFormat = (diffDays: number): string => {
     if (diffDays <= 0) return 'danger';
     if (diffDays === 1) return 'warning';
-    if (diffDays > 1) return `info`;
-
-    return 'Não encontrado dias para classe de cor';
+    return 'info';
   };
 }

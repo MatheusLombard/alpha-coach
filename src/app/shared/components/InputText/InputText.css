@@ -22,3 +22,7 @@
 .input-form .input-text{
   border-color: var(--border-subtle);
 }
+.input-text:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

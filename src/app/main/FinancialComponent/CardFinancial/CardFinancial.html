@@ -23,10 +23,10 @@
 </style>
 
 <div class="card-header">
-  <i class="bi bi-arrow-up-right-circle"></i>
-  <p class="font-label">RECEITA DO MES</p>
+  <i [class]="'bi bi-' + icon()"></i>
+  <p class="font-label">{{ label() }}</p>
 </div>
 <div class="card-body">
-  <h2 class="card-value">R$8.400</h2>
-  <p class="card-value-label font-label">12 alunos ativos</p>
+  <h2 class="card-value">{{ value() }}</h2>
+  <p class="card-value-label font-label">{{ sublabel() }}</p>
 </div>

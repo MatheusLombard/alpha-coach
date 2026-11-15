@@ -7,12 +7,24 @@
 .container-register {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 16px;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.info-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.info-row span {
+  color: var(--cor-primaria);
+}
+.info-row p {
+  color: #fff;
 }
 
 .container-buttons {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: 16px;
   align-items: center;
   margin-top: 8px;
@@ -20,4 +32,13 @@
 
 .container-buttons ::ng-deep button {
   justify-content: center;
+}
+
+.erro-mensagem {
+  color: var(--cor-danger);
+  margin: 0 0 16px;
+}
+.pago-mensagem {
+  color: var(--cor-success);
+  margin-top: 16px;
 }

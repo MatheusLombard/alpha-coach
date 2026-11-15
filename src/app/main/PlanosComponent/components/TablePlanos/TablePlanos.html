@@ -1,0 +1,48 @@
+<table class="font-body">
+  <thead>
+    <th>Descrição</th>
+    <th>Tipo</th>
+    <th>Valor</th>
+    <th>Duração</th>
+    <th>Status</th>
+    <th></th>
+  </thead>
+  <tbody>
+    @for (item of items(); track item.id) {
+      <tr>
+        <td class="defaut-format">{{ item.descricao }}</td>
+        <td>
+          <div class="div-type">
+            <p>{{ item.tipoPlano }}</p>
+          </div>
+        </td>
+        <td class="defaut-format">R$ {{ item.valor.toFixed(2) }}</td>
+        <td class="defaut-format">{{ item.duracaoMeses }}x</td>
+        <td>
+          <div class="div-type" [class.danger]="!item.ativo">
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <i class="bi bi-dot" style="margin-left: -6px"></i>
+              <p>{{ item.ativo ? 'ATIVO' : 'INATIVO' }}</p>
+            </div>
+          </div>
+        </td>
+        <td class="defaut-format actions-cell">
+          <i class="bi bi-pencil-square" (click)="chosenPlano.emit(item)"></i>
+          <i
+            class="bi"
+            [class.bi-toggle-off]="item.ativo"
+            [class.bi-toggle-on]="!item.ativo"
+            (click)="toggleStatus.emit(item)"
+          ></i>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

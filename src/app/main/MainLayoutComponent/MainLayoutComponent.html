@@ -13,6 +13,18 @@
       />
       <app-buttons [value]="'ALUNO'" [class]="'menu-button'" [icon]="'people'" [to]="'alunos'" />
       <app-buttons
+        [value]="'PLANOS'"
+        [class]="'menu-button'"
+        [icon]="'journal-bookmark'"
+        [to]="'planos'"
+      />
+      <app-buttons
+        [value]="'MATRÍCULAS'"
+        [class]="'menu-button'"
+        [icon]="'person-check'"
+        [to]="'matriculas'"
+      />
+      <app-buttons
         [value]="'TREINOS'"
         [class]="'menu-button'"
         [icon]="'clipboard-pulse'"
@@ -33,13 +45,13 @@
       <app-buttons [value]="'PERFIL'" [class]="'menu-button'" [icon]="'person'" [to]="'perfil'" />
     </nav>
     <div class="menu-logout">
-      <app-buttons [value]="'SAIR'" [class]="'menu-button'" [icon]="'box-arrow-right'" [to]="''" />
+      <app-buttons [value]="'SAIR'" [class]="'menu-button'" [icon]="'box-arrow-right'" (click)="sair()" />
     </div>
   </aside>
 
   <div class="app-content">
     <header class="app-header">
-      <h1 class="font-subtitle">Olá Tiago,</h1>
+      <h1 class="font-subtitle">Olá, {{ currentUser?.email ?? 'visitante' }}</h1>
       <p class="font-body">Aqui está um resumo das suas atividades hoje.</p>
     </header>
     <main class="app-main">

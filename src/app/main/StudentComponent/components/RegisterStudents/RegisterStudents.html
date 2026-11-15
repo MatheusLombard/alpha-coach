@@ -1,41 +1,40 @@
-<app-panel title="Cadastro de Aluno">
+<app-panel [title]="action() === 'update' ? 'Editar Aluno' : 'Cadastro de Aluno'">
   <div class="container-register">
-    <div class="container-photo">
-      <div class="photo-preview">
-        @if (avatar()) {
-          <img [src]="avatar()" alt="Foto do aluno" />
-        } @else {
-          <i class="bi bi-person"></i>
-        }
-      </div>
-      <app-input-text id="Foto do Aluno" type="file" value="" />
-    </div>
-    <app-input-text [style.grid-column]="'span 2'" id="Nome" type="text" [value]="name()" />
-    <app-input-text id="Email" type="email" [value]="email()" />
-    <app-input-text id="Telefone" type="tel" [value]="phone()" />
-    <app-input-text id="CPF" type="text" [value]="cpf()" />
-    <app-input-text id="Data de Nascimento" type="date" [value]="birthDate()" />
-    <app-input-text id="Tipo de Atendimento" type="text" [value]="type()" />
-    <app-input-text id="Plano" type="text" [value]="plan()" />
-    <app-input-text id="Data de Início" type="date" [value]="startDate()" />
-    <app-input-text id="Valor da Mensalidade" type="number" [value]="amount()" />
-    <app-input-text id="Peso" type="number" [value]="weight()" />
-    <app-input-text id="Altura" type="number" [value]="height()" />
-    <app-input-text [style.grid-column]="'span 2'" id="Objetivo" type="text" [value]="goal()" />
-    <app-input-area [style.grid-column]="'span 2'" id="Observações" [value]="notes()" />
+    <app-input-text [style.grid-column]="'span 2'" id="Nome" type="text" [(value)]="nome" />
+    <app-input-text id="Email" type="email" [(value)]="email" />
+    <app-input-text id="Telefone" type="tel" [(value)]="telefone" />
+    <app-input-text id="CPF" type="text" [(value)]="cpf" />
+    <app-input-text id="Data de Nascimento" type="date" [(value)]="dataNascimento" />
+    <app-input-select
+      id="Tipo de Atendimento"
+      [options]="tipoAlunoOptions"
+      [(value)]="tipoAluno"
+      [style.grid-column]="'span 2'"
+    />
+    <app-input-text [style.grid-column]="'span 2'" id="Endereço" type="text" [(value)]="endereco" />
+    <app-input-text [style.grid-column]="'span 2'" id="Objetivo" type="text" [(value)]="objetivo" />
+    <app-input-area [style.grid-column]="'span 2'" id="Anamnese" [(value)]="anamnese" />
   </div>
+
+  @if (mensagemErro()) {
+    <p class="font-label erro-mensagem">{{ mensagemErro() }}</p>
+  }
 
   <div class="container-buttons">
     <app-buttons
       icon="check-circle"
-      value="SALVAR"
-      [class]="action() == 'create' ? 'send-button' : ''"
+      [value]="action() === 'update' ? 'SALVAR' : 'CADASTRAR'"
+      class="send-button"
+      [style.flex]="'1'"
+      (click)="salvar.emit()"
     />
-    <app-buttons
-      icon="pencil-square"
-      value="ALTERAR"
-      [class]="action() == 'update' ? 'send-button' : ''"
-    />
-    <app-buttons icon="trash" value="EXCLUIR" />
+    @if (action() === 'update') {
+      <app-buttons
+        [icon]="ativo() ? 'person-x' : 'person-check'"
+        [value]="ativo() ? 'INATIVAR' : 'REATIVAR'"
+        [style.flex]="'1'"
+        (click)="alternarStatus.emit()"
+      />
+    }
   </div>
 </app-panel>

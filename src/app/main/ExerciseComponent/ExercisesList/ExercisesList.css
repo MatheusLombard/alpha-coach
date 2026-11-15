@@ -20,4 +20,20 @@
   font-weight: 800;
   color: var(--cor-accent);
 }
+.exercise-desc {
+  flex: 1;
+  cursor: pointer;
+}
+.exercise-desc a {
+  color: var(--cor-accent);
+  text-decoration: none;
+}
+.status-toggle {
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--cor-primaria);
+}
+.ul-exercise.inativo {
+  opacity: 0.5;
+}
 

@@ -10,10 +10,27 @@
   align-items: center;
   gap: 16px;
   margin-bottom: 16px;
+  position: relative;
 }
-.img-panel-student {
+.avatar-placeholder-student {
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  width: 15%;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cor-accent);
+  font-weight: 800;
+}
+.voltar-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  color: var(--cor-primaria);
+  font-size: 20px;
 }
 .drop-zone {
   display: flex;
@@ -45,4 +62,39 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
+}
+.group-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+}
+.erro-mensagem {
+  color: var(--cor-danger);
+  margin-top: 16px;
+}
+.sucesso-mensagem {
+  color: var(--cor-success);
+  margin-top: 16px;
+}
+.treino-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.treino-item:last-child {
+  border-bottom: none;
+}
+.treino-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.treino-actions i {
+  cursor: pointer;
+  color: var(--cor-primaria);
+  font-size: 18px;
 }

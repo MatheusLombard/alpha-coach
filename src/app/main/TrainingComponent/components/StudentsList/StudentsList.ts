@@ -1,6 +1,7 @@
 import { Component, computed, inject, input, output } from '@angular/core';
-import { Student, SelectedStudent } from '../../../../types/student';
-import { StudentService } from '../../../../core/services/student.service';
+import { rxResource } from '@angular/core/rxjs-interop';
+import { Aluno } from '../../../../types/aluno';
+import { AlunoService } from '../../../../core/services/aluno.service';
 
 @Component({
   selector: 'app-students-list',
@@ -9,25 +10,22 @@ import { StudentService } from '../../../../core/services/student.service';
   styleUrl: './StudentsList.css',
 })
 export class StudentsList {
-  private studentService = inject(StudentService);
+  private alunoService = inject(AlunoService);
 
-  studentChosen = output<SelectedStudent>();
+  studentChosen = output<Aluno>();
   valueSearched = input<string | undefined>();
 
-  listStudents: Student[] = this.studentService.getStudents();
+  private alunosResource = rxResource({ stream: () => this.alunoService.findAlunosAtivos() });
+  private listStudents = computed(() => this.alunosResource.value() ?? []);
 
   public initials(name: string) {
-    return name.slice(0, 2);
+    return name.slice(0, 2).toUpperCase();
   }
 
   public searchStudents = computed(() => {
-    const search = this.valueSearched() ?? '';
-    if(search === ''){
-      return this.listStudents
-    }else{
-      return this.listStudents.filter((student) => {
-        return student.name.toLowerCase().includes(search);
-      });
-    }
+    const search = (this.valueSearched() ?? '').toLowerCase();
+    const items = this.listStudents();
+    if (search === '') return items;
+    return items.filter((aluno) => aluno.nome.toLowerCase().includes(search));
   });
 }

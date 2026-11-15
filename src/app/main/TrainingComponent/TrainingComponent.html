@@ -9,34 +9,78 @@
 
   <app-panel [style.grid-column]="'span 4'">
     <div class="panel-student">
-      <img [src]="studentAvatar()" alt="" class="img-panel-student">
+      <div class="avatar-placeholder-student">{{ initials(studentName()) }}</div>
       <p>{{studentName()}}</p>
+      <i class="bi bi-arrow-left-circle voltar-icon" (click)="voltarParaLista()"></i>
     </div>
-    <app-panel title="Exercícios Vinculados">
+    <app-panel title="Montar Treino">
+      <app-input-text id="Nome do Treino" type="text" [(value)]="nomeTreino" />
       <div class="drop-zone" (dragover)="allowDrop($event)" (drop)="dropExercise($event)">
         @for (item of linkedExercises(); track $index; let i = $index) {
           <div class="vinculado">
             <div class="vinculado-header">
-              <p>{{ item.exercise.name }}</p>
+              <p>{{ item.exercise.nome }}</p>
               <i class="bi bi-x-lg" (click)="removeLinkedExercise(i)"></i>
             </div>
             <div class="vinculado-campos">
-              <app-input-text id="Series" type="number" [value]="item.sets" />
-              <app-input-text id="Repeticoes" type="number" [value]="item.reps" />
-              <app-input-text id="Carga" type="number" [value]="item.load" />
-              <app-input-text id="Descanso (s)" type="number" [value]="item.rest" />
+              <app-input-text id="Series" type="number" [(value)]="item.sets" />
+              <app-input-text id="Repeticoes" type="number" [(value)]="item.reps" />
+              <app-input-text id="Carga" type="text" [(value)]="item.load" />
+              <app-input-text id="Descanso (s)" type="number" [(value)]="item.rest" />
+              <app-input-text [style.grid-column]="'span 2'" id="Observação" type="text" [(value)]="item.notes" />
             </div>
           </div>
         } @empty {
           <p class="drop-placeholder">Arraste um exercício da biblioteca para cá</p>
         }
       </div>
+      @if (mensagemErro()) {
+        <p class="font-label erro-mensagem">{{ mensagemErro() }}</p>
+      }
+      @if (mensagemSucesso()) {
+        <p class="font-label sucesso-mensagem">{{ mensagemSucesso() }}</p>
+      }
+      <div class="group-buttons">
+        <app-buttons
+          value="SALVAR TREINO"
+          icon="check-circle"
+          class="send-button"
+          [style.flex]="'1'"
+          (click)="salvarTreino()"
+        />
+      </div>
     </app-panel>
+
+    @if (treinosDoAluno().length > 0) {
+      <app-panel title="Treinos deste Aluno">
+        @for (treino of treinosDoAluno(); track treino.id) {
+          <div class="treino-item">
+            <div>
+              <p class="font-body">{{ treino.nome }}</p>
+              <p class="font-label" [style.color]="'var(--cor-primaria)'">{{ treino.exercicios.length }} exercício(s)</p>
+            </div>
+            <div class="treino-actions">
+              <i class="bi bi-download" (click)="baixarFicha(treino.id)"></i>
+              <i
+                class="bi"
+                [class.bi-toggle-off]="treino.ativo"
+                [class.bi-toggle-on]="!treino.ativo"
+                (click)="alternarStatusTreino(treino)"
+              ></i>
+            </div>
+          </div>
+        }
+      </app-panel>
+    }
   </app-panel>
 }
 
   <app-panel [style.grid-column]="'span 4'" title="Biblioteca de Exercícios">
     <app-input-search (valueSearched)="valueSearchedExercise($event)" />
-    <app-exercises-list [valueSearched]="valueSearchExercise()" (dragExercise)="startDrag($event)" />
+    <app-exercises-list
+      [valueSearched]="valueSearchExercise()"
+      [items]="exercises()"
+      (dragExercise)="startDrag($event)"
+    />
   </app-panel>
 </div>

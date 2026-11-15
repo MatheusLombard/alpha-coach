@@ -19,6 +19,33 @@
   gap: 8px;
   margin-bottom: 16px;
 }
+.perfil-avatar-placeholder {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cor-accent);
+  font-size: 32px;
+}
+.panel-informations.indisponivel p {
+  color: var(--cor-primaria);
+  opacity: 0.6;
+}
+.aviso-backend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--cor-warning);
+  background-color: color-mix(in srgb, var(--cor-warning) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cor-warning) 30%, transparent);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+}
 .group-informations{
   display: flex;
   flex-direction: column;

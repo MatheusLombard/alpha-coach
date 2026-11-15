@@ -1,128 +1,75 @@
-import { Injectable } from '@angular/core';
-import { Customer, DashboardCard, PlanDistribution, RecentActivity } from '../../types/dashboard';
+import { inject, Injectable } from '@angular/core';
+import { forkJoin, map, Observable } from 'rxjs';
+import { AlunoService } from './aluno.service';
+import { MatriculaService } from './matricula.service';
+import { ParcelaService } from './parcela.service';
+import { Customer, DashboardSnapshot, PlanDistribution, RecentActivity } from '../../types/dashboard';
+import { toInputDate } from '../../shared/utils/date.util';
+
+// O backend não tem um endpoint de dashboard/resumo, então montamos o
+// snapshot aqui juntando Alunos + Matrículas + Parcelas (via /matricula/todos).
+// Não há timestamp de criação em nenhuma entidade, então "Atividades
+// Recentes" usa a ordem decrescente de id das matrículas como aproximação.
+const DISTRIBUTION_COLORS = ['info', 'success', 'warning', 'danger'];
 
 @Injectable({ providedIn: 'root' })
 export class DashboardService {
-  private cards: DashboardCard[] = [
-    {
-      label: 'Alunos Ativos',
-      value: '34',
-      type: 'up',
-    },
-    {
-      label: 'Treinos Este Mês',
-      value: '128',
-      type: 'up',
-    },
-    {
-      label: 'Receita mensal',
-      value: '8.400',
-      type: 'down',
-    },
-    {
-      label: 'Vencendo(7 dias)',
-      value: '6',
-      type: 'down',
-    },
-  ];
+  private alunoService = inject(AlunoService);
+  private matriculaService = inject(MatriculaService);
+  private parcelaService = inject(ParcelaService);
 
-  private recentActivities: RecentActivity[] = [
-    {
-      id: 1,
-      name: 'Carlos Almeida',
-      description: 'Treino realizado',
-      time: 'há 20 min',
-      avatarUrl: 'https://i.pravatar.cc/150?img=12',
-      status: 'success',
-    },
-    {
-      id: 2,
-      name: 'Fernanda Lima',
-      description: 'Pagamento recebido',
-      time: 'há 1h',
-      avatarUrl: 'https://i.pravatar.cc/150?img=45',
-      status: 'warning',
-    },
-    {
-      id: 3,
-      name: 'Rodrigo Costa',
-      description: 'Plano vencendo amanhã',
-      time: 'hoje',
-      avatarUrl: 'https://i.pravatar.cc/150?img=33',
-      status: 'warning',
-    },
-    {
-      id: 4,
-      name: 'Juliana Souza',
-      description: 'Novo treino montado',
-      time: 'há 3h',
-      avatarUrl: 'https://i.pravatar.cc/150?img=47',
-      status: 'info',
-    },
-    {
-      id: 5,
-      name: 'Marcos Nunes',
-      description: 'Pagamento em atraso',
-      time: '3 dias',
-      avatarUrl: 'https://i.pravatar.cc/150?img=14',
-      status: 'danger',
-    },
-    {
-      id: 6,
-      name: 'Patricia Oliveira',
-      description: 'Treino realizado',
-      time: 'há 5h',
-      avatarUrl: 'https://i.pravatar.cc/150?img=48',
-      status: 'success',
-    },
-  ];
+  public getSnapshot(): Observable<DashboardSnapshot> {
+    return forkJoin({
+      alunos: this.alunoService.findAlunosAtivos(),
+      matriculas: this.matriculaService.findMatriculas(),
+      parcelas: this.parcelaService.findParcelas(),
+    }).pipe(
+      map(({ alunos, matriculas, parcelas }) => {
+        const matriculasAtivas = matriculas.filter((m) => m.status === 'ATIVO');
+        const parcelasPagas = parcelas.filter((p) => p.status === 'PAGA');
+        const parcelasAtrasadas = parcelas.filter((p) => p.status === 'ATRASADA');
+        const receitaRecebida = parcelasPagas.reduce((acc, p) => acc + p.valor, 0);
 
-  private plansDistribution: PlanDistribution[] = [
-    {
-      label: 'Presencial',
-      value: 21,
-      color: 'info',
-    },
-    {
-      label: 'Online',
-      value: 9,
-      color: 'success',
-    },
-    {
-      label: 'Híbrido',
-      value: 4,
-      color: 'warning',
-    },
-  ];
+        const cards = [
+          { label: 'Alunos Ativos', value: String(alunos.length), type: 'up' as const },
+          { label: 'Matrículas Ativas', value: String(matriculasAtivas.length), type: 'up' as const },
+          { label: 'Receita Recebida', value: `R$ ${receitaRecebida.toFixed(2)}`, type: 'up' as const },
+          { label: 'Parcelas em Atraso', value: String(parcelasAtrasadas.length), type: 'down' as const },
+        ];
 
-  private paymentsWarning: Customer[] = [
-    {
-      name: 'Rodrigo Costa',
-      time: '2026-09-15',
-    },
-    {
-      name: 'Ana Paula',
-      time: '2026-09-13',
-    },
-    {
-      name: 'Bruno Leal',
-      time: '2026-09-19',
-    },
-  ];
+        const recentActivities: RecentActivity[] = [...matriculas]
+          .sort((a, b) => b.id - a.id)
+          .slice(0, 6)
+          .map((matricula) => ({
+            id: matricula.id,
+            name: matricula.alunoNome ?? `Aluno #${matricula.alunoId}`,
+            description: `Matriculado em ${matricula.planoDescricao ?? 'plano #' + matricula.planoId}`,
+            time: matricula.status,
+            status:
+              matricula.status === 'ATIVO' ? 'success' : matricula.status === 'VENCIDO' ? 'warning' : 'danger',
+          }));
 
-  public getCards(): DashboardCard[] {
-    return this.cards;
-  }
+        const porTipoPlano = new Map<string, number>();
+        matriculasAtivas.forEach((matricula) => {
+          const tipo = matricula.planoTipo ?? 'OUTROS';
+          porTipoPlano.set(tipo, (porTipoPlano.get(tipo) ?? 0) + 1);
+        });
+        const plansDistribution: PlanDistribution[] = Array.from(porTipoPlano.entries()).map(
+          ([label, value], index) => ({
+            label,
+            value,
+            color: DISTRIBUTION_COLORS[index % DISTRIBUTION_COLORS.length],
+          }),
+        );
 
-  public getRecentActivities(): RecentActivity[] {
-    return this.recentActivities;
-  }
+        const paymentsWarning: Customer[] = [...parcelas]
+          .filter((p) => p.status === 'EM_DIA')
+          .sort((a, b) => toInputDate(a.vencimento).localeCompare(toInputDate(b.vencimento)))
+          .slice(0, 5)
+          .map((p) => ({ name: p.alunoNome, time: toInputDate(p.vencimento) }));
 
-  public getPlansDistribution(): PlanDistribution[] {
-    return this.plansDistribution;
-  }
-
-  public getPaymentsWarning(): Customer[] {
-    return this.paymentsWarning;
+        return { cards, recentActivities, plansDistribution, paymentsWarning };
+      }),
+    );
   }
 }

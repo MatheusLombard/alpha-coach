@@ -1,30 +1,47 @@
 <app-modal (closeModal)="modal.set($event)" [style.display]="modal() ? 'block' : 'none'">
-  <app-register-financial
-    [student]="student()"
-    [plan]="plan()"
-    [modality]="modality()"
-    [amount]="amount()"
-    [dueDate]="dueDate()"
-    [status]="status()"
-    [action]="action()"
-  />
+  @if (parcelaSelecionada(); as parcela) {
+    <app-register-financial
+      [aluno]="parcela.alunoNome"
+      [plano]="parcela.planoDescricao"
+      [valor]="parcela.valor"
+      [vencimento]="formatDateBR(parcela.vencimento)"
+      [status]="parcela.status"
+      [(formaPagamento)]="formaPagamento"
+      [mensagemErro]="mensagemErro()"
+      (confirmar)="confirmarPagamento()"
+    />
+  }
 </app-modal>
 
 <div class="container-dash-financial">
-  <app-panel [style.grid-column]="'span 3'" >
-    <app-card-financial cardLabel="vencendo"  />
+  <app-panel [style.grid-column]="'span 3'">
+    <app-card-financial
+      icon="check-circle"
+      label="RECEBIDO"
+      [value]="'R$ ' + resumo().recebido.toFixed(2)"
+      [sublabel]="resumo().recebidoQtd + ' parcelas pagas'"
+    />
   </app-panel>
   <app-panel [style.grid-column]="'span 3'">
-    <app-card-financial cardLabel="vencendo"  />
+    <app-card-financial
+      icon="clock-history"
+      label="A VENCER"
+      [value]="'R$ ' + resumo().aVencer.toFixed(2)"
+      [sublabel]="resumo().aVencerQtd + ' parcelas em dia'"
+    />
   </app-panel>
   <app-panel [style.grid-column]="'span 3'">
-    <app-card-financial cardLabel="vencendo"  />
+    <app-card-financial
+      icon="exclamation-triangle"
+      label="EM ATRASO"
+      [value]="'R$ ' + resumo().atrasado.toFixed(2)"
+      [sublabel]="resumo().atrasadoQtd + ' parcelas atrasadas'"
+    />
   </app-panel>
 </div>
 <div class="container-financial">
   <app-input-search [style.grid-column]="'span 7'" (valueSearched)="valueSearched($event)" />
-  <app-buttons icon="plus-circle" value="Novo Recebimento" class="send-button" (click)="newFinancial()" />
   <app-panel [style.grid-column]="'span 8'" [title]="'Títulos a Receber'">
-    <app-table-financial [valueSearched]="valueSearch()" (chosenFinancial)="chosenFinancial($event)" />
+    <app-table-financial [valueSearched]="valueSearch()" [items]="parcelas()" (chosenFinancial)="chosenFinancial($event)" />
   </app-panel>
 </div>

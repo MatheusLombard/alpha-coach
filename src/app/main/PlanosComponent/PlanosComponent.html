@@ -1,0 +1,26 @@
+<div class="container-planos">
+  <app-panel [style.grid-column]="'span 4'" [title]="action() === 'update' ? 'Editar Plano' : 'Novo Plano'">
+    <app-input-text id="Descrição" type="text" [(value)]="descricao" />
+    <app-input-text id="Valor" type="number" [(value)]="valor" />
+    <app-input-text id="Duração em Meses" type="number" [(value)]="duracaoMeses" />
+    <app-input-select id="Tipo de Plano" [options]="tipoPlanoOptions" [(value)]="tipoPlano" />
+    @if (mensagemErro()) {
+      <p class="font-label erro-mensagem">{{ mensagemErro() }}</p>
+    }
+    <div class="group-buttons">
+      <app-buttons
+        [value]="action() === 'update' ? 'SALVAR' : 'CADASTRAR'"
+        icon="check-circle"
+        class="send-button"
+        [style.flex]="'1'"
+        (click)="salvar()"
+      />
+      @if (action() === 'update') {
+        <app-buttons value="CANCELAR" icon="x-circle" [style.flex]="'1'" (click)="limparFormulario()" />
+      }
+    </div>
+  </app-panel>
+  <app-panel [style.grid-column]="'span 4'" title="Planos Cadastrados">
+    <app-table-planos [items]="planos()" (chosenPlano)="selecionarPlano($event)" (toggleStatus)="alternarStatus($event)" />
+  </app-panel>
+</div>

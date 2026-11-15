@@ -1,38 +1,35 @@
-<style></style>
-
 <table class="font-body">
   <thead>
     <th>Aluno</th>
+    <th>CPF</th>
     <th>Tipo</th>
-    <th>Plano</th>
-    <th>Desde</th>
+    <th>Telefone</th>
     <th>Status</th>
+    <th></th>
   </thead>
   <tbody>
-    @for (item of searchStudents(); track $index) {
+    @for (item of searchStudents(); track item.id) {
       <tr>
         <td>
           <div class="div-students">
-            <img [src]="item.avatar" class="avatar" alt="avatar" />
+            <div class="avatar-placeholder">
+              <i class="bi bi-person"></i>
+            </div>
             <div class="dsc-students">
-              <h3>{{ item.name }}</h3>
+              <h3>{{ item.nome }}</h3>
               <p class="font-label">{{ item.email }}</p>
             </div>
           </div>
         </td>
+        <td class="defaut-format">{{ item.cpf ?? '-' }}</td>
         <td>
           <div class="div-type">
-            <p>{{ item.type }}</p>
+            <p>{{ item.tipoAluno }}</p>
           </div>
         </td>
-        <td class="defaut-format">
-          <p>
-            {{ item.plan }}
-          </p>
-        </td>
-        <td class="defaut-format">{{ item.since }}</td>
+        <td class="defaut-format">{{ item.telefone ?? '-' }}</td>
         <td>
-          <div class="div-type danger">
+          <div class="div-type" [class.danger]="!item.ativo">
             <div
               style="
                 display: flex;
@@ -42,26 +39,24 @@
               "
             >
               <i class="bi bi-dot" style="margin-left: -6px"></i>
-              <p>{{ item.status.toLocaleUpperCase().replace('-', ' ') }}</p>
+              <p>{{ item.ativo ? 'ATIVO' : 'INATIVO' }}</p>
             </div>
           </div>
         </td>
-        <td class="defaut-format">
-          <i
-            class="bi bi-three-dots-vertical"
-            (click)="
-              chosenStudent.emit({
-                id: item.id,
-                name: item.name,
-                email: item.email,
-                avatar: item.avatar,
-                type: item.type,
-                plan: item.plan,
-                since: item.since,
-                status: item.status
-              })
-            "
-          ></i>
+        <td class="defaut-format menu-cell">
+          <i class="bi bi-three-dots-vertical" (click)="toggleMenu(item.id)"></i>
+          @if (openMenuId() === item.id) {
+            <div class="menu-dropdown">
+              <button type="button" (click)="editar(item)">
+                <i class="bi bi-pencil-square"></i>
+                Editar
+              </button>
+              <button type="button" (click)="matricular(item)">
+                <i class="bi bi-journal-plus"></i>
+                Matricular
+              </button>
+            </div>
+          }
         </td>
       </tr>
     }

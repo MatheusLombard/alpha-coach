@@ -19,10 +19,6 @@
   table tbody tr td {
     padding: 16px;
   }
-  .avatar {
-    width: 8%;
-    border-radius: 12px;
-  }
   .div-students {
     display: flex;
     gap: 8px;
@@ -59,11 +55,13 @@
 
 <table class="font-body">
   <thead>
-    <th>Alunos</th>
+    <th>Aluno</th>
     <th>Plano</th>
-    <th>Valor Parcela</th>
+    <th>Parcela</th>
+    <th>Valor</th>
     <th>Vencimento</th>
     <th>Status</th>
+    <th></th>
   </thead>
   <tbody>
     @for (item of searchFinancial(); track item.id) {
@@ -71,26 +69,23 @@
         <td>
           <div class="div-students">
             <div class="dsc-students">
-              <h3>{{item.student}}</h3>
+              <h3>{{ item.alunoNome }}</h3>
             </div>
           </div>
         </td>
         <td>
           <div class="div-type">
-            <p>{{item.plan}}</p>
+            <p>{{ item.planoDescricao }}</p>
           </div>
         </td>
-        <td class="defaut-format">
-          <p>
-            {{item.amount}}
-          </p>
-        </td>
-        <td class="defaut-format">{{item.dueDate}}</td>
+        <td class="defaut-format">{{ item.numeroParcela }}</td>
+        <td class="defaut-format">R$ {{ item.valor.toFixed(2) }}</td>
+        <td class="defaut-format">{{ formatDateBR(item.vencimento) }}</td>
         <td>
-          <div class="div-type danger">
+          <div class="div-type" [class.danger]="item.status === 'ATRASADA' || item.status === 'CANCELADA'">
             <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
               <i class="bi bi-dot" style="margin-left: -6px;"></i>
-              <p>{{item.status.toLocaleUpperCase().replace('-', ' ')}}</p>
+              <p>{{ item.status }}</p>
             </div>
           </div>
         </td>

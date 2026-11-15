@@ -6,5 +6,7 @@
     class="input-text font-label"
     [placeholder]="'Digite seu ' + id()"
     [value]="value()"
+    [disabled]="disabled()"
+    (input)="value.set($any($event.target).value)"
   />
 </div>

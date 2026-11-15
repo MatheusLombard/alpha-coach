@@ -3,27 +3,29 @@
     <!-- INFORMAÇÕES HEADER DE PERFIL -->
     <app-panel [style.grid-column]="'span 2'">
       <div class="panel-perfil-header">
-        <img src="https://i.pravatar.cc/150?img=7" alt="" class="perfil-brand" />
-        <h3>Tiago Mendes</h3>
-        <h5>Personal Trainer</h5>
+        <div class="perfil-avatar-placeholder">
+          <i class="bi bi-person"></i>
+        </div>
+        <h3>{{ currentUser?.email ?? 'Usuário não identificado' }}</h3>
+        <h5>ID #{{ currentUser?.userId ?? '-' }}</h5>
       </div>
       <div class="group-informations">
         <app-panel padding="8px">
           <div class="panel-informations">
             <p>Alunos Ativos</p>
-            <p>34</p>
+            <p>{{ alunosAtivos() }}</p>
           </div>
         </app-panel>
         <app-panel padding="8px">
-          <div class="panel-informations">
+          <div class="panel-informations indisponivel">
             <p>Anos de Experiência</p>
-            <p>8</p>
+            <p>—</p>
           </div>
         </app-panel>
         <app-panel padding="8px">
-          <div class="panel-informations">
+          <div class="panel-informations indisponivel">
             <p>Avaliação Média</p>
-            <p>4.9</p>
+            <p>—</p>
           </div>
         </app-panel>
       </div>
@@ -31,6 +33,10 @@
 
     <!-- CONFIGURAÇÕES(PREFERENCIAD DO APP) -->
     <app-panel title="Preferências" [style.grid-column]="'span 2'">
+      <p class="font-label aviso-backend">
+        <i class="bi bi-info-circle"></i>
+        Essas preferências ainda não são salvas (sem endpoint no backend).
+      </p>
       <div class="preferences-list">
         <app-switch label="Notificações Push" [checked]="true" />
         <app-switch label="Alertas por e-mail" [checked]="true" />
@@ -44,30 +50,35 @@
   <!-- INFORMAÇÕES PESSOAIS -->
   <div [style.grid-column]="'span 6'" class="display-default">
     <app-panel title="Informações Pessoais">
+      <p class="font-label aviso-backend">
+        <i class="bi bi-info-circle"></i>
+        O backend só devolve o e-mail e o ID do usuário logado (via token). Os campos abaixo ficam
+        bloqueados até existir uma rota para ler/atualizar o perfil.
+      </p>
       <div class="form-grid">
-        <app-input-text id="Nome Completo" type="text" value="Tiago Mendes" />
-        <app-input-text id="CREF" type="text" value="123456-G/SP" />
-        <app-input-text id="E-mail" type="email" value="tiago@alphacoach.com.br" />
-        <app-input-text id="Telefone / WhatsApp" type="tel" value="(11) 99876-5432" />
-        <app-input-text id="Data de Nascimento" type="text" value="14/03/1990" />
-        <app-input-text id="Cidade / Estado" type="text" value="São Paulo, SP" />
-        <app-input-area
-          class="full-row"
-          id="Bio / Especialidades"
-          value="Personal trainer certificado com foco em hipertrofia, emagrecimento e performance atlética. Atendo presencialmente em São Paulo e online para todo o Brasil."
-        />
+        <app-input-text id="E-mail" type="email" [value]="currentUser?.email ?? ''" [disabled]="true" />
+        <app-input-text id="Nome Completo" type="text" value="" [disabled]="true" />
+        <app-input-text id="CREF" type="text" value="" [disabled]="true" />
+        <app-input-text id="Telefone / WhatsApp" type="tel" value="" [disabled]="true" />
+        <app-input-text id="Data de Nascimento" type="text" value="" [disabled]="true" />
+        <app-input-text id="Cidade / Estado" type="text" value="" [disabled]="true" />
+        <app-input-area class="full-row" id="Bio / Especialidades" value="" [disabled]="true" />
       </div>
-      <app-buttons class="send-button" [value]="'SALVAR ALTERAÇÕES'" />
+      <app-buttons class="send-button" [value]="'SALVAR ALTERAÇÕES'" [disabled]="true" />
     </app-panel>
 
     <!-- ALTERAR SENHA -->
     <app-panel title="Alterar Senha">
+      <p class="font-label aviso-backend">
+        <i class="bi bi-info-circle"></i>
+        Não existe rota no backend para trocar a senha de um usuário já logado.
+      </p>
       <div class="form-grid">
-        <app-input-text class="full-row" id="Senha Atual" type="password" />
-        <app-input-text id="Nova Senha" type="password" />
-        <app-input-text id="Confirmar Nova Senha" type="password" />
+        <app-input-text class="full-row" id="Senha Atual" type="password" value="" [disabled]="true" />
+        <app-input-text id="Nova Senha" type="password" value="" [disabled]="true" />
+        <app-input-text id="Confirmar Nova Senha" type="password" value="" [disabled]="true" />
       </div>
-      <app-buttons class="send-button" [value]="'ALTERAR SENHA'" />
+      <app-buttons class="send-button" [value]="'ALTERAR SENHA'" [disabled]="true" />
     </app-panel>
   </div>
 </div>

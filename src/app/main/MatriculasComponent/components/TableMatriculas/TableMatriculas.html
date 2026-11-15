@@ -1,0 +1,40 @@
+<table class="font-body">
+  <thead>
+    <th>Aluno</th>
+    <th>Plano</th>
+    <th>Início</th>
+    <th>Parcelas</th>
+    <th>Status</th>
+    <th></th>
+  </thead>
+  <tbody>
+    @for (item of items(); track item.id) {
+      <tr>
+        <td class="defaut-format">{{ item.alunoNome ?? 'Aluno #' + item.alunoId }}</td>
+        <td class="defaut-format">{{ item.planoDescricao ?? 'Plano #' + item.planoId }}</td>
+        <td class="defaut-format">{{ item.dataInicio }}</td>
+        <td class="defaut-format">{{ item.totalParcelas ?? '-' }}</td>
+        <td>
+          <div class="div-type" [class.danger]="item.status !== 'ATIVO'">
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <i class="bi bi-dot" style="margin-left: -6px"></i>
+              <p>{{ item.status }}</p>
+            </div>
+          </div>
+        </td>
+        <td class="defaut-format actions-cell">
+          @if (item.status === 'ATIVO') {
+            <i class="bi bi-x-circle" (click)="cancelar.emit(item)"></i>
+          }
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

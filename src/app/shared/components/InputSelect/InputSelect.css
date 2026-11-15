@@ -1,0 +1,25 @@
+.select-input {
+  color: #fff;
+  background-color: color-mix(in srgb, var(--cor-accent) 1%, var(--cor-accent) 1%);
+  border-color: color-mix(in srgb, var(--cor-accent) 25%, var(--cor-accent) 25%);
+  border-style: solid;
+  border-radius: 15px;
+  width: 100%;
+  padding: 16px;
+  margin: 8px 0 16px 0;
+}
+.select-input:focus {
+  background-color: color-mix(in srgb, var(--cor-accent) 1%, var(--cor-accent) 1%);
+  border-color: color-mix(in srgb, var(--cor-accent) 25%, var(--cor-accent) 25%);
+}
+.select-input option {
+  background-color: var(--bg-dark);
+  color: #fff;
+}
+
+.select-form .select-label {
+  color: var(--cor-primaria);
+}
+.select-form .select-input {
+  border-color: var(--border-subtle);
+}

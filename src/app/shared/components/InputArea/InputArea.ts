@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, model } from '@angular/core';
 
 @Component({
   selector: 'app-input-area',
@@ -8,5 +8,6 @@ import { Component, input } from '@angular/core';
 })
 export class InputArea {
   public id = input.required<string>()
-  public value = input.required<string>()
+  public value = model.required<string>()
+  public disabled = input<boolean>(false);
 }

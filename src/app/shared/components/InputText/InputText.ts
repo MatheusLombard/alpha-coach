@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, model } from '@angular/core';
 
 @Component({
   selector: 'app-input-text',
@@ -9,6 +9,7 @@ import { Component, input } from '@angular/core';
 export class InputText {
   public id = input.required<string>();
   public type = input.required<string>();
-  public value= input<string>();
+  public value = model<string>('');
+  public disabled = input<boolean>(false);
 
 }

@@ -22,3 +22,7 @@
   height: 200px;
   border: 1px solid var(--border-subtle);
 }
+.textarea-form .textarea-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

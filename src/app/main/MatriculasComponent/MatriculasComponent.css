@@ -1,0 +1,18 @@
+:host {
+  display: block;
+}
+.container-matriculas {
+  display: grid;
+  grid-template-columns: repeat(8, 2fr);
+  gap: 16px;
+}
+.group-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+.erro-mensagem {
+  color: var(--cor-danger);
+  margin: -8px 0 16px;
+}

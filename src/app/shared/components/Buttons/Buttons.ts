@@ -12,4 +12,5 @@ export class Buttons {
   public value = input.required<string>();
   public class = input<string>();
   public to = input<string>()  ;
+  public disabled = input<boolean>(false);
 }

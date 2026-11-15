@@ -1,10 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { Card } from "./components/Card/Card";
 import { Panel } from "../../shared/components/Panel/Panel";
 import { DashboardActivities } from "./components/DashboardActivities/DashboardActivities";
 import { DashboardDistribution } from "./components/DashboardDistribution/DashboardDistribution";
 import { DashboardPaymentsWarning } from './components/DashboardPaymentsWarning/DashboardPaymentsWarning';
-import { DashboardCard } from '../../types/dashboard';
 import { DashboardService } from '../../core/services/dashboard.service';
 
 @Component({
@@ -16,5 +16,10 @@ import { DashboardService } from '../../core/services/dashboard.service';
 export class DashboardComponent {
   private dashboardService = inject(DashboardService);
 
-  dashboardCards: DashboardCard[] = this.dashboardService.getCards();
+  private snapshotResource = rxResource({ stream: () => this.dashboardService.getSnapshot() });
+
+  public dashboardCards = computed(() => this.snapshotResource.value()?.cards ?? []);
+  public recentActivities = computed(() => this.snapshotResource.value()?.recentActivities ?? []);
+  public plansDistribution = computed(() => this.snapshotResource.value()?.plansDistribution ?? []);
+  public paymentsWarning = computed(() => this.snapshotResource.value()?.paymentsWarning ?? []);
 }

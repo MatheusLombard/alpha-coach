@@ -1,6 +1,5 @@
-import { Component, computed, inject, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { Exercise } from '../../../types/exercise';
-import { ExerciseService } from '../../../core/services/exercise.service';
 
 @Component({
   selector: 'app-exercises-list',
@@ -9,11 +8,9 @@ import { ExerciseService } from '../../../core/services/exercise.service';
   styleUrl: './ExercisesList.css',
 })
 export class ExercisesList {
-  private exerciseService = inject(ExerciseService);
-
   valueSearched = input<string | undefined>();
 
-  items: Exercise[] = this.exerciseService.getExercises();
+  items = input<Exercise[]>([]);
 
   abbreviation(group: string): string {
     return group.substring(0, 2).toUpperCase();
@@ -21,14 +18,16 @@ export class ExercisesList {
 
   public chosenExercise = output<Exercise>()
   public dragExercise = output<Exercise>()
+  public toggleStatus = output<Exercise>()
 
   public searchExercises = computed(() => {
     const search = this.valueSearched() ?? '';
+    const items = this.items();
     if (search === '') {
-      return this.items;
+      return items;
     } else {
-      return this.items.filter((item) => {
-        return item.name.toLowerCase().includes(search);
+      return items.filter((item) => {
+        return item.nome.toLowerCase().includes(search);
       });
     }
   });

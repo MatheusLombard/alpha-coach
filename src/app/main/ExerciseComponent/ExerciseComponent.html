@@ -1,21 +1,31 @@
 <div class="container-exercises">
-  <app-panel [style.grid-column]="'span 4'" title="Novo Exercício">
-    <app-input-text id="Nome do Exercício" type="text" [value]="name()" />
-    <app-input-text id="Grupo Muscular" type="text" [value]="muscleGroup()" />
-    <app-input-text id="Equipamento" type="text" [value]="equipment()" />
-    <app-radio
-      [id]="'Dificuldade'"
-      [options]="['Iniciante', 'Intermediário', 'Avançado']"
-      [optionChosen]="difficulty()"
-    ></app-radio>
-    <app-input-area id="Observações" [value]="notes()" />
+  <app-panel [style.grid-column]="'span 4'" [title]="action() === 'update' ? 'Editar Exercício' : 'Novo Exercício'">
+    <app-input-text id="Nome do Exercício" type="text" [(value)]="name" />
+    <app-input-text id="Link do Vídeo" type="text" [(value)]="linkVideo" />
+    <app-input-area id="Observações" [(value)]="notes" />
+    @if (mensagemErro()) {
+      <p class="font-label erro-mensagem">{{ mensagemErro() }}</p>
+    }
     <div class="group-buttons">
-      <app-buttons class="" [style.flex]="'1'" [value]="'NOVO'" />
-      <app-buttons class="send-button" [style.flex]="'1'" [value]="'SALVAR'" />
+      <app-buttons
+        class="send-button"
+        [style.flex]="'1'"
+        [value]="action() === 'update' ? 'SALVAR' : 'CADASTRAR'"
+        icon="check-circle"
+        (click)="saveExercise()"
+      />
+      @if (action() === 'update') {
+        <app-buttons value="CANCELAR" icon="x-circle" [style.flex]="'1'" (click)="limparFormulario()" />
+      }
     </div>
   </app-panel>
   <app-panel [style.grid-column]="'span 4'" title="Biblioteca de Exercícios">
     <app-input-search (valueSearched)="valueSearched($event)" />
-    <app-exercises-list [valueSearched]="valueSearch()" (chosenExercise)="valueExercise($event)" />
+    <app-exercises-list
+      [valueSearched]="valueSearch()"
+      [items]="exercises()"
+      (chosenExercise)="valueExercise($event)"
+      (toggleStatus)="alternarStatus($event)"
+    />
   </app-panel>
 </div>

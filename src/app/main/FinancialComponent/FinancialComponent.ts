@@ -1,57 +1,85 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { InputSearch } from '../StudentComponent/components/InputSearch/InputSearch';
 import { Panel } from '../../shared/components/Panel/Panel'
-import { Buttons } from '../../shared/components/Buttons/Buttons';
 import { TableFinancial } from './TableFinancial/TableFinancial';
-import { Financial } from '../../types/financial';
+import { ParcelaFinanceira } from '../../types/parcela';
 import { CardFinancial } from './CardFinancial/CardFinancial';
 import { Modal } from '../../shared/components/Modal/Modal';
 import { RegisterFinancial } from './RegisterFinancial/RegisterFinancial';
+import { ParcelaService } from '../../core/services/parcela.service';
+import { PagamentoService } from '../../core/services/pagamento.service';
+import { FormaPagamento } from '../../types/pagamento';
+import { formatDateBR, hojeBR } from '../../shared/utils/date.util';
 
 @Component({
   selector: 'app-financial-component',
-  imports: [InputSearch, Panel, Buttons, TableFinancial, CardFinancial, Modal, RegisterFinancial],
+  imports: [InputSearch, Panel, TableFinancial, CardFinancial, Modal, RegisterFinancial],
   templateUrl: './FinancialComponent.html',
   styleUrl: './FinancialComponent.css',
 })
 export class FinancialComponent {
-  public student = signal<string>('')
-  public plan = signal<string>('')
-  public modality = signal<string>('')
-  public amount = signal<string>('')
-  public dueDate = signal<string>('')
-  public status = signal<string>('')
+  private parcelaService = inject(ParcelaService);
+  private pagamentoService = inject(PagamentoService);
 
-  public modal = signal<boolean>(false)
-  public action = signal<string>('create')
+  public formatDateBR = formatDateBR;
+
+  public parcelaSelecionada = signal<ParcelaFinanceira | null>(null);
+  public formaPagamento = signal<string>('');
+  public mensagemErro = signal<string>('');
+  public modal = signal<boolean>(false);
+
+  private parcelasResource = rxResource({ stream: () => this.parcelaService.findParcelas() });
+  public parcelas = computed(() => this.parcelasResource.value() ?? []);
+
+  public resumo = computed(() => {
+    const lista = this.parcelas();
+    const soma = (status: string) => lista.filter((p) => p.status === status).reduce((acc, p) => acc + p.valor, 0);
+    const conta = (status: string) => lista.filter((p) => p.status === status).length;
+    return {
+      recebido: soma('PAGA'),
+      recebidoQtd: conta('PAGA'),
+      aVencer: soma('EM_DIA'),
+      aVencerQtd: conta('EM_DIA'),
+      atrasado: soma('ATRASADA'),
+      atrasadoQtd: conta('ATRASADA'),
+    };
+  });
 
   public valueSearch = signal<string | undefined>('');
-  public valueSearched(value: string | undefined){
-    this.valueSearch.set(value)
+  public valueSearched(value: string | undefined) {
+    this.valueSearch.set(value);
   }
 
-  public chosenFinancial(financial: Financial) {
-    this.student.set(financial.student);
-    this.plan.set(financial.plan);
-    this.modality.set(financial.modality);
-    this.amount.set(String(financial.amount));
-    // input type="date" so aceita o formato aaaa-mm-dd
-    this.dueDate.set(financial.dueDate.split('/').reverse().join('-'));
-    this.status.set(financial.status);
-
-    this.modal.set(true)
-    this.action.set('update')
+  public chosenFinancial(parcela: ParcelaFinanceira) {
+    this.parcelaSelecionada.set(parcela);
+    this.formaPagamento.set('');
+    this.mensagemErro.set('');
+    this.modal.set(true);
   }
 
-  public newFinancial() {
-    this.student.set('');
-    this.plan.set('');
-    this.modality.set('');
-    this.amount.set('');
-    this.dueDate.set('');
-    this.status.set('');
+  public confirmarPagamento() {
+    const parcela = this.parcelaSelecionada();
+    if (!parcela) return;
+    if (!this.formaPagamento()) {
+      this.mensagemErro.set('Selecione a forma de pagamento.');
+      return;
+    }
 
-    this.modal.set(true)
-    this.action.set('create')
+    this.pagamentoService
+      .registrarPagamento({
+        alunoId: parcela.alunoId,
+        dataPagamento: hojeBR(),
+        valorPago: parcela.valor,
+        formaPagamento: this.formaPagamento() as FormaPagamento,
+        parcelaId: parcela.id,
+      })
+      .subscribe({
+        next: () => {
+          this.modal.set(false);
+          this.parcelasResource.reload();
+        },
+        error: (err) => this.mensagemErro.set(err?.error?.message ?? 'Não foi possível registrar o pagamento.'),
+      });
   }
 }

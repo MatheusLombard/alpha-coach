@@ -1,0 +1,16 @@
+<div class="select-form">
+  <label [for]="id()" class="select-label font-label" style="display: block">{{
+    id().toUpperCase()
+  }}</label>
+  <select
+    [id]="id()"
+    class="select-input font-label"
+    [value]="value()"
+    (change)="value.set($any($event.target).value)"
+  >
+    <option value="" disabled>{{ placeholder() }}</option>
+    @for (option of options(); track option.value) {
+      <option [value]="option.value">{{ option.label }}</option>
+    }
+  </select>
+</div>

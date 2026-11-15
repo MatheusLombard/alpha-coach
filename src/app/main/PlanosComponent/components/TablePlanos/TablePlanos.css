@@ -1,0 +1,54 @@
+:host {
+  padding: 0;
+}
+
+table {
+  width: calc(100% + 32px);
+  border-collapse: collapse;
+  margin: -24px -16px;
+}
+thead {
+  color: var(--cor-primaria);
+}
+thead th,
+tbody tr {
+  text-align: start;
+  padding: 16px;
+}
+td {
+  border: 1px solid var(--border-subtle);
+}
+table tbody tr td {
+  padding: 16px;
+}
+.div-type {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  width: auto;
+  padding: 8px 16px;
+  border-radius: 25px;
+  display: inline-block;
+}
+.div-type.danger {
+  background-color: color-mix(in srgb, var(--cor-danger) 20%, transparent);
+}
+.div-type p {
+  text-align: center;
+  color: var(--cor-primaria);
+  font-weight: 500;
+}
+.div-type.danger p,
+.div-type.danger i {
+  color: var(--cor-danger);
+}
+.defaut-format {
+  color: var(--cor-primaria);
+  font-weight: 600;
+}
+.actions-cell {
+  display: flex;
+  gap: 12px;
+}
+.actions-cell i {
+  cursor: pointer;
+}

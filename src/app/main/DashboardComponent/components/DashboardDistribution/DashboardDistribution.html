@@ -20,15 +20,18 @@
 .progress-bar-fill.info { background: var(--cor-accent); }
 .progress-bar-fill.success { background: var(--cor-success); }
 .progress-bar-fill.warning { background: var(--cor-warning); }
+.progress-bar-fill.danger { background: var(--cor-danger); }
 </style>
 
-@for (item of plans; track $index) {
+@for (item of plans(); track item.label) {
   <ul style="list-style-type: none; margin-top: 8px;">
     <li class="list-distribution">
-      <p class="font-body" >{{item.label}}</p>
+      <p class="font-body" >{{item.label}} ({{item.value}})</p>
       <div class="progress-bar">
          <div [class]="'progress-bar-fill ' + item.color" [style.width.%]="percentage(item.value)"></div>
       </div>
     </li>
   </ul>
+} @empty {
+  <p class="font-body" style="padding: 8px 0; color: var(--cor-primaria);">Nenhuma matrícula ativa ainda.</p>
 }

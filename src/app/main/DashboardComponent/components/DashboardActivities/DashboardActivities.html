@@ -19,9 +19,18 @@
     gap: 16px
   }
 
-  .list-item-image{
+  .list-item-avatar {
     width: 50px;
+    height: 50px;
     border-radius: 16px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-accent);
+    font-weight: 800;
+    flex-shrink: 0;
   }
   .list-item-desc{
     flex: 1;
@@ -33,10 +42,10 @@
   }
 </style>
 
-@for (item of listRecentActivities; track $index) {
+@for (item of items(); track item.id) {
   <ul style="list-style-type: none">
     <li class="list-item">
-      <div><img [src]="item.avatarUrl" alt="" class="list-item-image"/></div>
+      <div class="list-item-avatar">{{ initials(item.name) }}</div>
       <div class="list-item-desc">
         <p class="font-subtitle">{{ item.name }}</p>
         <p class="font-body">{{ item.description }}</p>
@@ -47,4 +56,6 @@
       </div>
     </li>
   </ul>
+} @empty {
+  <p class="font-body" style="padding: 16px; color: var(--cor-primaria);">Nenhuma matrícula registrada ainda.</p>
 }

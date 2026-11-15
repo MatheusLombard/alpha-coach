@@ -1,5 +1,5 @@
 <div class="container">
-  @for (item of dashboardCards; track $index) {
+  @for (item of dashboardCards(); track $index) {
     <app-panel class="card-span-2">
       <app-card
         [cardLabel]="item.label"
@@ -11,15 +11,15 @@
   }
 
   <app-panel title="Atividades Recentes" class="card-span-5">
-    <app-dashboard-activities />
+    <app-dashboard-activities [items]="recentActivities()" />
   </app-panel>
 
   <div style="display: flex; flex-direction: column; gap: 16px" class="card-span-3">
     <app-panel title="Distribuição de Planos">
-      <app-dashboard-distribution />
+      <app-dashboard-distribution [plans]="plansDistribution()" />
     </app-panel>
     <app-panel title="Próximos Vencimentos">
-      <app-dashboard-payments-warning />
+      <app-dashboard-payments-warning [customersWarning]="paymentsWarning()" />
     </app-panel>
   </div>
 </div>

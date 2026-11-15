@@ -1,0 +1,21 @@
+<div class="container-matriculas">
+  <app-panel [style.grid-column]="'span 4'" title="Nova Matrícula">
+    <app-input-select id="Aluno" [options]="alunoOptions()" [(value)]="alunoId" placeholder="Selecione o aluno" />
+    <app-input-select id="Plano" [options]="planoOptions()" [(value)]="planoId" placeholder="Selecione o plano" />
+    @if (mensagemErro()) {
+      <p class="font-label erro-mensagem">{{ mensagemErro() }}</p>
+    }
+    <div class="group-buttons">
+      <app-buttons
+        value="MATRICULAR"
+        icon="check-circle"
+        class="send-button"
+        [style.flex]="'1'"
+        (click)="matricular()"
+      />
+    </div>
+  </app-panel>
+  <app-panel [style.grid-column]="'span 4'" title="Matrículas">
+    <app-table-matriculas [items]="matriculas()" (cancelar)="cancelarMatricula($event)" />
+  </app-panel>
+</div>

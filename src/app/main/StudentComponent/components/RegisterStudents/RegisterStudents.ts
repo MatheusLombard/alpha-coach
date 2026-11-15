@@ -1,30 +1,38 @@
-import { Component, input } from '@angular/core';
+import { Component, input, model, output } from '@angular/core';
 import { Panel } from '../../../../shared/components/Panel/Panel';
 import { InputText } from '../../../../shared/components/InputText/InputText';
 import { InputArea } from '../../../../shared/components/InputArea/InputArea';
+import { InputSelect, SelectOption } from '../../../../shared/components/InputSelect/InputSelect';
 import { Buttons } from '../../../../shared/components/Buttons/Buttons';
+
+const TIPO_ALUNO_OPTIONS: SelectOption[] = [
+  { value: 'PRESENCIAL', label: 'Presencial' },
+  { value: 'ONLINE', label: 'Online' },
+];
 
 @Component({
   selector: 'app-register-students',
-  imports: [Panel, InputText, InputArea, Buttons],
+  imports: [Panel, InputText, InputArea, InputSelect, Buttons],
   templateUrl: './RegisterStudents.html',
   styleUrl: './RegisterStudents.css',
 })
 export class RegisterStudents {
-  public avatar = input<string>('');
-  public name = input<string>('');
-  public email = input<string>('');
-  public phone = input<string>('');
-  public cpf = input<string>('');
-  public birthDate = input<string>('');
-  public type = input<string>('');
-  public plan = input<string>('');
-  public startDate = input<string>('');
-  public amount = input<string>('');
-  public weight = input<string>('');
-  public height = input<string>('');
-  public goal = input<string>('');
-  public notes = input<string>('');
+  public nome = model<string>('');
+  public email = model<string>('');
+  public cpf = model<string>('');
+  public dataNascimento = model<string>('');
+  public telefone = model<string>('');
+  public tipoAluno = model<string>('');
+  public endereco = model<string>('');
+  public objetivo = model<string>('');
+  public anamnese = model<string>('');
 
-  public action = input<string>('');
+  public ativo = input<boolean>(true);
+  public action = input<string>('create');
+  public mensagemErro = input<string>('');
+
+  public tipoAlunoOptions = TIPO_ALUNO_OPTIONS;
+
+  public salvar = output<void>();
+  public alternarStatus = output<void>();
 }

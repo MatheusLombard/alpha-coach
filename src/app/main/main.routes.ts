@@ -6,6 +6,8 @@ import { FinancialComponent } from './FinancialComponent/FinancialComponent';
 import { ExerciseComponent } from './ExerciseComponent/ExerciseComponent';
 import { ProfileComponent } from './ProfileComponent/ProfileComponent';
 import { TrainingComponent } from './TrainingComponent/TrainingComponent';
+import { PlanosComponent } from './PlanosComponent/PlanosComponent';
+import { MatriculasComponent } from './MatriculasComponent/MatriculasComponent';
 
 export const mainRoutes : Routes = [
   {
@@ -19,6 +21,14 @@ export const mainRoutes : Routes = [
       {
         path: 'alunos',
         component: StudentComponent,
+      },
+      {
+        path: 'planos',
+        component: PlanosComponent,
+      },
+      {
+        path: 'matriculas',
+        component: MatriculasComponent,
       },
       {
         path: 'treinos',

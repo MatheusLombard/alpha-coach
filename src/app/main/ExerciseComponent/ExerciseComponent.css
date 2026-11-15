@@ -12,4 +12,8 @@
   justify-content: center;
   align-items: center;
 }
+.erro-mensagem {
+  color: var(--cor-danger);
+  margin: -8px 0 16px;
+}
 

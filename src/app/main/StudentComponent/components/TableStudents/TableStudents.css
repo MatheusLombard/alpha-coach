@@ -27,9 +27,17 @@
   table tbody tr td {
     padding: 16px;
   }
-  .avatar {
-    width: 8%;
+  .avatar-placeholder {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
     border-radius: 12px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-accent);
   }
   .div-students {
     display: flex;
@@ -62,4 +70,37 @@
   .defaut-format {
     color: var(--cor-primaria);
     font-weight: 600;
+  }
+  .menu-cell {
+    position: relative;
+  }
+  .menu-dropdown {
+    position: absolute;
+    right: 16px;
+    top: 100%;
+    z-index: 10;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 160px;
+  }
+  .menu-dropdown button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    color: var(--cor-primaria);
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    font-size: var(--font-label);
+  }
+  .menu-dropdown button:hover {
+    background-color: color-mix(in srgb, var(--cor-accent) 15%, transparent);
   }

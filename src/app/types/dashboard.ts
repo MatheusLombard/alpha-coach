@@ -9,7 +9,6 @@ export interface RecentActivity {
   name: string;
   description: string;
   time: string;
-  avatarUrl: string;
   status: string;
 }
 
@@ -22,4 +21,11 @@ export interface PlanDistribution {
 export interface Customer {
   name: string;
   time: string;
+}
+
+export interface DashboardSnapshot {
+  cards: DashboardCard[];
+  recentActivities: RecentActivity[];
+  plansDistribution: PlanDistribution[];
+  paymentsWarning: Customer[];
 }

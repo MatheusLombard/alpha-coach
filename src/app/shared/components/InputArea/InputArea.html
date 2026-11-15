@@ -2,5 +2,11 @@
   <label [for]="id()" class="textarea-label font-label" style="display: block">{{
     id().toUpperCase()
   }}</label>
-  <textarea class="textarea-input" [id]="id()">{{value()}}</textarea>
+  <textarea
+    class="textarea-input"
+    [id]="id()"
+    [value]="value()"
+    [disabled]="disabled()"
+    (input)="value.set($any($event.target).value)"
+  ></textarea>
 </div>

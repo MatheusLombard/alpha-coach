@@ -73,6 +73,9 @@
     opacity: 0.7;
     justify-self: flex-end;
   }
+  .erro-mensagem {
+    color: var(--cor-danger);
+  }
 </style>
 
 <div style="margin: 16px;">
@@ -111,14 +114,27 @@
         <h2 class="font-subtitle" style="opacity: 0.3">Acesse sua conta para continuar</h2>
       </div>
 
-      <form action="" method="post" class="group-inputs">
+      <form class="group-inputs" (submit)="$event.preventDefault()">
         <div>
-          <app-input-text id="email" [type]="'email'" />
-          <app-input-text id="senha" [type]="'password'" />
+          <app-input-text id="email" [type]="'email'" [(value)]="email" />
+          <app-input-text
+            id="senha"
+            [type]="'password'"
+            [(value)]="password"
+            (keydown.enter)="entrar()"
+          />
         </div>
       </form>
+      @if (mensagemErro()) {
+        <p class="font-label erro-mensagem">{{ mensagemErro() }}</p>
+      }
       <a href=""><p class="font-label forget-password">Esqueci minha senha</p></a>
-      <app-buttons [value]="'Entrar'" [class]="'send-button' " [to]="'/home/dashboard'"/>
+      <app-buttons
+        [value]="carregando() ? 'ENTRANDO...' : 'Entrar'"
+        [class]="'send-button' "
+        [disabled]="carregando()"
+        (click)="entrar()"
+      />
     </div>
   </div>
 </div>
